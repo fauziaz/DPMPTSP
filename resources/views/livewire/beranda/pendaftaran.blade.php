@@ -10,13 +10,21 @@
             <!-- .tab-indicator will be injected -->
         </div>
         <div class="tab-content">
-            <div id="tab-1" class="tab-panel active">
-                <img src="{{ asset('image/oss_nib.png') }}" class="img-fluid" style="max-width: 500px;" alt="OSS NIB">
+          <div id="tab-1" class="tab-panel active position-relative lightbox-wrapper">
+            <img src="{{ asset('image/oss_nib.png') }}" class="img-fluid lightbox-img" alt="OSS NIB">
+            <span class="zoom-icon"><i class="bi bi-search"></i></span>
+          </div>
 
-            </div>
-            <div id="tab-2" class="tab-panel">
-                <img src="{{ asset('image/tatacara.jpg') }}" class="img-fluid" style="max-width: 500px;" alt="Tatacara Daftar Perizinan">
-            </div>
+          <div id="tab-2" class="tab-panel position-relative lightbox-wrapper">
+            <img src="{{ asset('image/tatacara.jpg') }}" class="img-fluid lightbox-img" alt="Tatacara Daftar Perizinan">
+            <span class="zoom-icon"><i class="bi bi-search"></i></span>
+          </div>
+        </div>
+
+        <!-- Lightbox Modal -->
+        <div id="imageLightbox" class="lightbox-overlay d-none" onclick="closeLightbox()">
+          <img id="lightboxImage" src="" alt="Preview" />
+          <button class="close-btn" onclick="closeLightbox()">✕</button>
         </div>
         </div>
         </div>
