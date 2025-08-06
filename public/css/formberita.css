@@ -1,0 +1,74 @@
+#beritaform {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#beritaform .form-group {
+  margin-bottom: 1.5rem;
+}
+
+#beritaform label {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: block;
+  color: #333;
+}
+
+#beritaform input,
+#beritaform select,
+#beritaform textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+#beritaform input:focus,
+#beritaform textarea:focus,
+#beritaform select:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 0 0.15rem rgba(0,123,255,.2);
+}
+
+#beritaform textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+#beritaform .btn-submit {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#beritaform .btn-submit:hover {
+  background-color: #0056b3;
+}
+
+#beritaform .text-danger {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+#beritaform .alert-success {
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: #155724;
+  margin-bottom: 1rem;
+}

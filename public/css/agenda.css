@@ -1,0 +1,168 @@
+/* body {
+  font-family: 'Roboto', sans-serif;
+  background-color: #f9f9f9;
+} */
+
+.agenda-container {
+  max-width: 600px;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  background-color: white;
+}
+
+.agenda-header {
+  background-color: #133C6B;
+  color: white;
+  padding: 1rem 1.5rem;
+  font-weight: bold;
+  font-size: 1.25rem;
+}
+
+.agenda-date-info {
+  padding: 1rem 1.5rem;
+}
+
+.agenda-month {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+  color: #333;
+}
+
+.agenda-week {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 0.2rem;
+}
+
+.agenda-swiper-container {
+  position: relative;
+  padding: 0 1.5rem;
+}
+
+.agenda-swiper {
+  display: flex;
+  overflow-x: auto;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+.agenda-swiper::-webkit-scrollbar {
+  display: none;
+}
+
+.agenda-date-button {
+  width: 56px;
+  height: 64px;
+  border-radius: 8px;
+  background-color: #f0f4f8;
+  color: #003366;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.agenda-date-button.active {
+  background-color: #133C6B;
+  color: white;
+}
+
+.agenda-day {
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.agenda-swiper-nav {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  padding: 0 1rem;
+  pointer-events: none;
+}
+
+/* === Perkecil tombol navigasi swiper === */
+.agenda-swiper-prev,
+.agenda-swiper-next {
+  font-size: 1rem;        /* sebelumnya 1.25rem */
+  width: 28px;
+  height: 28px;
+  color: #888;
+  background-color: transparent;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.agenda-swiper-prev:hover,
+.agenda-swiper-next:hover {
+  color: #133C6B;
+}
+
+/* === Hover efek tombol tanggal === */
+.agenda-date-button:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.agenda-date-button {
+  transition: all 0.3s ease;
+}
+
+.agenda-content {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.agenda-empty img {
+  width: 100px;
+  margin-bottom: 1rem;
+}
+
+.agenda-empty-title {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.agenda-empty-description {
+  font-size: 0.875rem;
+  color: #607d8b;
+}
+
+.agenda-empty-description strong {
+  color: #111;
+}
+/* make sure swiper takes full width */
+.agenda-swiper { position: relative; padding: 0 1.5rem; }
+.swiper-wrapper { display: flex; }
+
+/* override default swiper-button icon colors */
+.agenda-swiper-prev,
+.agenda-swiper-next {
+  color: #888;
+}
+.agenda-swiper-prev:hover,
+.agenda-swiper-next:hover {
+  color: #133C6B;
+}
+
+/* slide sizing */
+.swiper-slide {
+  width: 56px;         /* same as your button width */
+  flex-shrink: 0;
+}

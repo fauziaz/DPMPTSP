@@ -1,0 +1,37 @@
+.custom-card {
+  border: 1px solid #ccc; /* border abu */
+  border-radius: 10px;
+  padding: 1em;
+  transition: all 0.3s ease; /* transisi smooth */
+  text-align: center;
+  min-width: 100%;
+  background-color: transparent;
+}
+
+.custom-card:hover {
+  color:#ffffff;
+  border-color: #133C6B; /* biru saat hover */
+  background-color: #133C6B; /* sedikit latar biru muda */
+}
+
+.selengkapnya {
+  color: #415C84;
+  font-weight: bold;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; /* jarak antara teks dan ikon */
+  transition: color 0.3s ease;
+}
+
+.selengkapnya i {
+  transition: color 0.3s ease;
+}
+
+.custom-card:hover .selengkapnya {
+  color: #ffffff;
+}
+
+.custom-card:hover .selengkapnya i {
+  color: #ffffff;
+}

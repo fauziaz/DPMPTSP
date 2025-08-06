@@ -1,0 +1,106 @@
+.tab-wrapper {
+  position: relative;
+}
+
+.tab-wrapper-berita {
+  position: relative;
+  width: 400px;
+  padding-left: 20px;
+}
+
+.tab-header {
+  display: flex;
+  border-bottom: 1px solid #555;
+  position: relative;
+}
+
+.tab-button {
+  flex: 1;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  background: none;
+  border: none;
+  color: #6c757d;
+  transition: color 0.3s ease-in-out;
+  position: relative;
+  z-index: 1;
+}
+
+.tab-button.active {
+  color: #000;
+}
+
+.tab-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 3px;
+  background-color: #133C6B;
+  border-radius: 2px;
+  transition: left 0.3s ease, width 0.3s ease;
+  z-index: 0;
+}
+
+.tab-content {
+  margin-top: 1rem;
+}
+
+.tab-panel {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+}
+
+.tab-panel.active {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+.tab-card:hover {
+  background-color: #e6ebf4;
+}
+
+.tab-head {
+  display: flex;
+  border-bottom: 1px solid #133C6B;
+  position: relative;
+}
+
+.tab-but {
+  flex: 1;
+  padding: 0.75rem;
+  text-align: center;
+  font-weight: 600;
+  color: #133C6B;
+}
+
+.tab-image {
+  width: 70px; 
+  height: 70px; 
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .tab-wrapper {
+    padding: 1rem;
+  }
+.tab-wrapper-berita {
+  width: 100%;
+  max-width: 100%;
+}
+}
+
+@media (min-width: 991px) {
+.tab-wrapper-berita {
+  padding-left: 30px;
+}
+}
+
+@media (max-width: 991px) {
+.tab-wrapper-berita {
+  width: 100%;
+  max-width: 100%;
+}
+}
