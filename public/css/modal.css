@@ -1,0 +1,205 @@
+ .modal-dialog {
+    max-width: 700px; /* jangan terlalu mepet */
+    margin: 1rem auto; /* biar ada ruang atas-bawah */
+  }
+
+/* Buat header modal jadi kolom supaya Regulasi & Judul tidak sebaris */
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 0.5rem;
+  padding-top: 1rem;
+  position: relative;
+  border-bottom: 1px solid #dee2e6; /* tambahkan garis bawah */
+}
+
+/* Close button tetap kanan atas */
+.modal-header .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 1.5rem 2rem !important; /* atau sesuaikan dengan keinginan */
+}
+
+.modal-label {
+  display: inline-block;         /* supaya background hanya sepanjang teks */
+  background-color: #f1f1f1;     /* abu-abu terang */
+  color: #6c757d;                /* setara text-secondary Bootstrap (#6c757d) */
+  font-size: 1rem;               /* h6 default size dari Bootstrap (16px) */
+  font-weight: 600;              /* lebih tebal */
+  letter-spacing: 1px;           /* spasi antar huruf */
+  text-transform: uppercase;     /* ganti text-uppercase bootstrap */
+  padding: 4px 10px;             /* jarak dalam biar nyaman */
+  border-radius: 6px;            /* sudut agak membulat */
+  margin-bottom: 0.5rem;         /* setara mb-2 bootstrap (8px) */
+}
+
+.modal-label:hover {
+  color: #fff;                /* warna teks biru */
+  background-color: #133C6B;     /* background biru muda */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Judul regulasi */
+.modal-title {
+  font-size: 1.8rem; /* lebih besar */
+  font-weight: 700;
+  color: #133C6B;
+}
+
+/* Grid informasi */
+.modal-info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 1.2rem;
+  /* margin-bottom: 1.2rem; jarak antar item lebih lega  */
+}
+
+.modal-info-icon {
+  font-size: 1.4rem; /* icon lebih besar */
+  color: #133C6B;
+  flex-shrink: 0;
+  margin-top: 0.3rem;
+}
+
+.modal-info-label {
+  display: block;
+  font-size: 1rem; /* label lebih besar */
+  color: #6c757d;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+.modal-info-value.format {
+  display: inline-block;         /* supaya background hanya sepanjang teks */
+  background-color: #f1f1f1;     /* abu-abu terang */
+  color: #000000;                /* setara text-secondary Bootstrap (#6c757d) */
+  font-size: 13px;               /* h6 default size dari Bootstrap (16px) */
+  font-weight: 400;              /* lebih tebal */
+  letter-spacing: 1px;           /* spasi antar huruf */
+  padding: 5px 5px;             /* jarak dalam biar nyaman */
+  border-radius: 6px;            /* sudut agak membulat */
+  margin-bottom: 0.5rem;         /* setara mb-2 bootstrap (8px) */
+}
+
+.modal-info-value.format:hover {
+  color: #fff;                /* warna teks biru */
+  background-color: #133C6B;     /* background biru muda */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Media Queries untuk tampilan responsive */
+@media (max-width: 576px) {
+  .btn-detail,
+  .btn-unduh {
+    width: 100%;
+    justify-content: center;
+    font-size: 12px;     /* ⬅️ Ukuran font lebih kecil */
+    padding: 6px 10px;   /* ⬅️ Padding lebih kecil, tombol jadi ramping */
+    line-height: 1.2;
+    flex: 1 1 auto;
+  }
+
+  .modal-dialog {
+    max-width: 400px; /* jangan terlalu mepet */
+    margin: 1rem auto; /* biar ada ruang atas-bawah */
+  }
+
+  .modal-content {
+    border-radius: 10px;
+    padding: 0.75rem; /* lebih ringkas dari default */
+  }
+
+  .modal-title {
+    font-size: 1rem; /* lebih kecil dari 1.4rem sebelumnya */
+  }
+
+  .modal-label {
+    font-size: 0.75rem; /* sekitar 14px */
+    padding: 2px 6px;    /* padding lebih kecil */
+  }
+
+  .modal-title {
+    font-size: 1rem;
+    margin-bottom: 0.1rem;
+  }
+
+  .modal-label {
+    font-size: 0.7rem;
+    padding: 2px 6px;
+    margin-bottom: 0.1rem;
+  }
+
+  .modal-info-label {
+    font-size: 0.7rem;
+    margin-bottom: 2px;
+  }
+
+  .modal-info-value {
+    font-size: 0.7rem;
+  }
+
+  .modal-info-value.format {
+    font-size: 0.7rem;
+    padding: 2px 5px;
+  }
+
+  .modal-info-icon {
+    font-size: 0.9rem;
+    margin-top: 0.1rem;
+  }
+
+  .modal-info-item {
+    margin-bottom: 0.1rem; /* jarak antar item dikecilin */
+    gap: 0.75rem;           /* jarak antara icon dan teks dikecilin */
+  }
+
+  .modal-header,
+  .modal-body,
+  .modal-footer {
+    padding: 1rem !important; /* lebih ringkas */
+  }
+
+}
+
+@media (min-width: 577px) and (max-width: 768px) {
+
+   .modal-dialog {
+    max-width: 600px; /* jangan terlalu mepet */
+    margin: 1rem auto; /* biar ada ruang atas-bawah */
+  }
+
+  .modal-title {
+    font-size: 1.6rem;
+  }
+
+  .modal-info-grid .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+
+   .modal-dialog {
+    max-width: 700px; /* jangan terlalu mepet */
+    margin: 1rem auto; /* biar ada ruang atas-bawah */
+  }
+
+  .modal-title {
+    font-size: 1.7rem;
+  }
+
+  .modal-info-grid .col-md-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+}

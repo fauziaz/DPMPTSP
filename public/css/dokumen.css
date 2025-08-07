@@ -1,0 +1,678 @@
+.btn-detail {
+  color: #133C6B;
+  border: 2px solid #133C6B;
+  background-color: #fff;
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
+.btn-detail:hover {
+  background-color: #133C6B;
+  color: #fff;
+}
+
+.btn-unduh {
+  color: #fff;
+  background-color: #133C6B;
+  border: 2px solid #133C6B;
+  border-radius: 50px;
+  padding: 8px 20px;
+  font-size: 18px;
+  font-weight: 500;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+.btn-unduh:hover {
+  background-color: #0f2e51;
+  border-color: #0f2e51;
+  color: white;
+}
+
+.custom-year-list {
+    border: none;
+    padding: 0;
+}
+
+/* Setiap item jadi inline-block supaya hover mengikuti panjang konten */
+.custom-year-item {
+    display: inline-block;        /* <== ini penting */
+    border: none;
+    margin: 2px;               /* jarak antar item */
+    padding: 8px 20px;           /* spasi sekitar teks */
+    color: #333;
+    font-size: 19px;             /* ukuran font lebih besar */
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 8px;          /* biar ada sudut halus pas hover */
+}
+
+/* Hover hanya sepanjang teks */
+.custom-year-item:hover {
+    background-color: #f5f5f5;
+}
+
+/* Style untuk item aktif */
+.custom-year-item.active-year {
+    background-color: #E6EFF8;   /* biru muda */
+    color: #133C6B;
+    font-size: 20px;             /* lebih besar dari default */
+    font-weight: 600;
+}
+
+/* Titik di kanan untuk item aktif */
+.custom-year-item.active-year::after {
+    content: "";
+    position: absolute;
+    right: 8px;                  /* pindah ke kanan */
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background-color: #133C6B;
+    border-radius: 50%;
+}
+
+.custom-pagination-btn {
+  background-color: transparent !important;
+  border: none !important;
+  color: #0d47a1 !important;
+  padding: 6px 10px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.custom-pagination-btn:hover {
+  color: #0d2b52 !important;
+  transform: scale(1.1);
+}
+
+.disabled-button {
+    cursor: not-allowed !important;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Card wrapper */
+.dokumen-card {
+  font-size: 18px; /* semua font lebih gede */
+  margin-bottom: 20px;              /* Jarak antar card */
+}
+
+.dokumen-flex-wrapper {
+  display: flex;
+  flex-direction: row; /* 💡 Default desktop: icon kiri, isi kanan */
+  gap: 16px;
+  align-items: stretch;
+  align-items: center; /* 🔥 Ini penting supaya vertikal tengah */
+}
+
+/* Kiri: Icon file */
+.dokumen-icon-wrapper {
+  flex: 0 0 120px; /* default 80px, ubah di media query */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dokumen-icon-wrapper i {
+  font-size: 3rem;
+}
+
+/* Kanan: Isi konten */
+.dokumen-content {
+  flex: 1;
+}
+
+.dokumen-label {
+  display: inline-block;         /* supaya background hanya sepanjang teks */
+  background-color: #f1f1f1;     /* abu-abu terang */
+  color: #6c757d;                /* setara text-secondary Bootstrap (#6c757d) */
+  font-size: 1rem;               /* h6 default size dari Bootstrap (16px) */
+  font-weight: 600;              /* lebih tebal */
+  letter-spacing: 1px;           /* spasi antar huruf */
+  text-transform: uppercase;     /* ganti text-uppercase bootstrap */
+  padding: 4px 10px;             /* jarak dalam biar nyaman */
+  border-radius: 6px;            /* sudut agak membulat */
+  margin-bottom: 0.5rem;         /* setara mb-2 bootstrap (8px) */
+}
+
+.dokumen-label:hover {
+  color: #133C6B;                /* warna teks biru */
+  background-color: #E6EFF8;     /* background biru muda */
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.dokumen-label-tanggal {
+  display: inline-block;         /* supaya background hanya sepanjang teks */
+  background-color: #f1f1f1;     /* abu-abu terang */
+  color: #6c757d;                /* setara text-secondary Bootstrap (#6c757d) */
+  font-size: 15px;
+  font-weight: 400;              /* lebih tebal */
+  letter-spacing: 1px;           /* spasi antar huruf */
+  padding: 4px 10px;             /* jarak dalam biar nyaman */
+  border-radius: 6px;            /* sudut agak membulat */
+}
+
+.dokumen-label-tanggal:hover {
+  color: #133C6B;              
+  background-color: #E6EFF8;    
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Judul besar */
+.dokumen-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #133C6B;
+  margin-bottom: 8px;
+}
+
+/* Deskripsi */
+.dokumen-desc {
+  font-size: 18px;
+  color: #333;
+}
+
+/* Meta info (unduhan & tanggal) */
+.dokumen-meta {
+  font-size: 16px;
+  color: #555;
+}
+
+.dropdown-menu-dokumen {
+  min-width: 120px;
+  width: max-content;
+  max-width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  position: absolute;
+  bottom: 100%;
+  left: 0; 
+  margin-bottom: 6px; 
+  z-index: 20;
+  border: 1px solid #133C6B !important;
+}
+
+.pagination-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 12px; /* beri jarak antar kolom */
+  z-index: 10; /* Lebih tinggi dari .dokumen-content yang z-index: 0 */
+}
+
+.pagination-wrapper > .col-md-4,
+.pagination-wrapper > .page-control-desktop {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.page-control-desktop input {
+  max-width: 80px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 7px;
+  background-color: #fff;
+  padding: 8px 16px;
+  width: 100%;
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  font-size: 18px;
+  color: #333;
+  background: transparent;
+  flex: 1;
+  min-width: 0; /* penting agar tidak overflow */
+}
+
+.search-box:focus-within {
+  border-color: #133C6B; /* biru sesuai keinginan */
+}
+
+/* Icon search */
+.search-icon {
+  color: #666;                /* abu-abu juga */
+  font-size: 22px;
+}
+
+/* Tombol cari */
+.search-btn {
+  background-color: #133C6B;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 10px 24px;
+  font-size: 18px;
+  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: #0f2e51;
+}
+
+.page-control-mobile {
+    display: none;
+}
+
+/* Mobile: Stack ke bawah */
+@media (max-width: 576px) {
+  html, body {
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .hover-item:hover {
+        background-color: #f8f9fa !important; /* Bootstrap's bg-light */
+        color: #212529 !important;           /* Bootstrap's text-dark */
+    }
+
+  .container,
+  .content-card,
+  .section-wrapper,
+  .dokumen-card,
+  .search-box {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* Wrapper utama untuk setiap dokumen (ganti row g-0) */
+  .dokumen-flex-wrapper {
+    flex-direction: column; /* ⬅️ Tambahkan ini agar stack */
+    align-items: stretch; /* penting agar tinggi child mengikuti parent */
+  }
+
+  .dokumen-label {
+    display: table;            /* agar bisa auto width */
+    margin: 0 auto 8px auto;   /* biar teks di tengah */
+    padding: 4px 12px;         /* biar ada ruang dalam */
+    background: #f1f1f1;       /* contoh highlight */
+    border-radius: 4px;        /* opsional */
+    font-weight: 600;
+  }
+
+  .dokumen-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .dokumen-desc {
+    font-size: 13px;
+  }
+
+  .dokumen-label-tanggal {
+    font-size: 10px;
+    padding: 2px 6px; /* kecilin juga paddding supaya background gak terlalu lebar */
+  }
+
+  .dokumen-meta {
+    font-size: 12px;
+  }
+
+  .dokumen-meta > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    width: 100%; /* ini bantu biar bisa benar-benar di tengah */
+  }
+
+  .dokumen-card .mt-3 {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    align-items: stretch;
+  }
+
+  .btn-detail,
+  .btn-unduh {
+    width: 100%;
+    justify-content: center;
+    font-size: 12px;     /* ⬅️ Ukuran font lebih kecil */
+    padding: 6px 10px;   /* ⬅️ Padding lebih kecil, tombol jadi ramping */
+    line-height: 1.2;
+    display: row;
+    flex: 1 1 auto;
+    white-space: nowrap;        /* Cegah pecah baris */
+  }
+
+  .modal-footer {
+    flex-wrap: nowrap !important; /* ✅ Cegah stacking */
+    justify-content: space-between;
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .search-icon {
+    font-size: 16px;
+  }
+
+  .search-input {
+    flex: 1; /* 🔥 biar input ngalahin ukuran */
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 0; /* 🔥 penting untuk fleksibel mengecil */
+  }
+
+  .search-btn {
+    flex-shrink: 0; /* 🔥 jangan dikecilin */
+    font-size: 12px;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+
+  .dokumen-card {
+    font-size: 13px;
+  }
+
+  .dokumen-label {
+    font-size: 11px;
+    padding: 2px 5px;
+  }
+
+  .custom-year-item {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  .custom-year-item.active-year {
+    font-size: 13px;
+  }
+
+  .page-control-desktop,
+  .page-nav-desktop,
+  .per-page-wrapper {
+    display: none !important;
+  }
+
+  .page-control-mobile {
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 6px;
+    margin-top: 4px;
+    line-height: 1;
+  }
+
+  .page-control-mobile > * {
+    display: flex;
+    align-items: center;
+  }
+
+  .page-control-mobile .col-md-4 {
+    display: flex !important;
+    align-items: center !important;
+    gap: 4px;
+  }
+
+  .page-control-mobile button {
+    padding: 2px 6px;
+    font-size: 10px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-control-mobile i.bi {
+    font-size: 12px;
+  }
+
+  .page-control-mobile span {
+    font-size: 10px;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .page-control-mobile .dropdown-menu-dokumen {
+    font-size: 11px;
+  }
+
+  .page-control-mobile .dropdown-item {
+    padding: 3px 6px;
+  }
+
+  .page-control-mobile button,
+  .page-control-mobile .dropdown-toggle-dokumen,
+  .page-control-mobile input,
+  .page-control-mobile select {
+    height: 32px;
+    font-size: 12px;
+    padding: 4px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .page-control-mobile button.btn-outline-secondary {
+    font-size: 10px;
+    padding: 2px 4px;
+    height: 24px;
+    min-width: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+/* Tablet: Icon lebih kecil, tetap sejajar */
+@media (min-width: 577px) and (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .container,
+  .content-card,
+  .section-wrapper,
+  .dokumen-card,
+  .search-box {
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  /* === Layout konten dokumen stack seperti mobile === */
+  .dokumen-flex-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dokumen-label {
+    display: table;
+    margin: 0 auto 8px auto;
+    font-size: 15px;
+    padding: 2px 5px;
+  }
+
+  .dokumen-title {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .dokumen-desc {
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .dokumen-label-tanggal {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .dokumen-meta {
+    font-size: 13px;
+    justify-content: center;
+  }
+
+  .dokumen-meta > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .dokumen-card .mt-3 {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    align-items: stretch;
+  }
+
+  .btn-detail,
+  .btn-unduh {
+    font-size: 14px;
+    padding: 8px 14px;
+    line-height: 1.2;
+    justify-content: center;
+    display: row;
+    flex: 1 1 auto;
+    white-space: nowrap;        /* Cegah pecah baris */
+  }
+
+  .modal-footer {
+    flex-wrap: nowrap !important; /* ✅ Cegah stacking */
+    justify-content: space-between;
+  }
+
+  .search-box {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    gap: 8px;
+  }
+
+  .search-icon {
+    font-size: 16px;
+  }
+
+  .search-input {
+    flex: 1; /* 🔥 biar input ngalahin ukuran */
+    font-size: 12px;
+    padding: 6px 8px;
+    min-width: 0; /* 🔥 penting untuk fleksibel mengecil */
+  }
+
+  .search-btn {
+    flex-shrink: 0; /* 🔥 jangan dikecilin */
+    font-size: 12px;
+    padding: 6px 12px;
+    white-space: nowrap;
+  }
+
+  .dokumen-card {
+    font-size: 13px;
+  }
+
+  .custom-year-item {
+    font-size: 12px;
+    padding: 4px 10px;
+  }
+
+  .custom-year-item.active-year {
+    font-size: 13px;
+  }
+
+  /* === Pagination: tampilkan versi desktop, sembunyikan mobile === */
+  .page-control-desktop,
+  .page-nav-desktop,
+  .per-page-wrapper {
+    display: flex !important;
+  }
+
+  .page-control-mobile {
+    display: none !important;
+  }
+
+  .pagination-wrapper {
+    flex-wrap: nowrap;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .pagination-wrapper > * {
+    flex: 1 1 auto;
+  }
+}
+
+/* Small Desktop */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dokumen-icon-wrapper {
+    flex: 0 0 70px;
+  }
+
+  .dokumen-icon-wrapper i {
+    font-size: 2.6rem;
+  }
+
+  .dokumen-title {
+    font-size: 21px;
+  }
+
+  .dokumen-desc {
+    font-size: 16px;
+  }
+
+  .btn-detail,
+  .btn-unduh {
+    font-size: 16px;
+    padding: 7px 18px;
+  }
+
+  .page-control-desktop span,
+  .pagination-wrapper {
+    font-size: 14px;
+  }
+
+  .pagination-wrapper {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .pagination-wrapper > * {
+    flex: 1 1 100%;
+    justify-content: space-between;
+  }
+}
+
+/* Desktop > 1024px tetap seperti default (80px dan 3rem) */

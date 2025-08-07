@@ -1,0 +1,14 @@
+.dokumen-desc-scroll {
+    max-height: 120px;
+    overflow-y: auto;
+    padding-right: 4px; /* biar nggak ketimpa scrollbar */
+}
+
+/* Opsional: tambahkan scrollbar lebih halus */
+.dokumen-desc-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.dokumen-desc-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0,0,0,0.2);
+    border-radius: 4px;
+}

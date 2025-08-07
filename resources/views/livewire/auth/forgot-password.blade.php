@@ -1,4 +1,4 @@
-<?php
+{{-- <?php
 
 use Illuminate\Support\Facades\Password;
 use Livewire\Attributes\Layout;
@@ -46,4 +46,4 @@ new #[Layout('components.layouts.auth')] class extends Component {
         <span>{{ __('Or, return to') }}</span>
         <flux:link :href="route('login')" wire:navigate>{{ __('log in') }}</flux:link>
     </div>
-</div>
+</div> --}}

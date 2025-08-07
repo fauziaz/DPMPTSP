@@ -34,7 +34,6 @@
             <li><a class="dropdown-item" href="{{ url('/visi-misi') }}">Visi Misi</a></li>
             <li><a class="dropdown-item" href="{{ url('/tupoksi') }}">Tugas Pokok & Fungsi</a></li>
             <li><a class="dropdown-item" href="{{ url('/struktur-organisasi') }}">Struktur Organisasi</a></li>
-            <li><a class="dropdown-item" href="{{ url('/agenda') }}">Agenda</a></li>
           </ul>
         </li>
 
@@ -62,10 +61,10 @@
         </a>
           <ul class="dropdown-menu" aria-labelledby="dropdown3">
             <li><a class="dropdown-item" href="https://lkpmonline.bkpm.go.id/lkpm_perka17/login.jsp" target="_blank">LKPM</a></li>
-            <li><a class="dropdown-item" href="{{ url('/potensi-investasi') }}">Potensi Investasi</a></li>
-            <li><a class="dropdown-item" href="{{ url('/realisasi-investasi') }}">Realisasi Investasi</a></li>
-            <li><a class="dropdown-item" href="{{ url('/promosi-investasi') }}">Promosi Investasi</a></li>
-            <li><a class="dropdown-item" href="{{ url('/regulasi') }}">Regulasi</a></li>
+            <li><a class="dropdown-item" href="{{ url('/penanaman-modal/investasi') }}">Potensi Investasi</a></li>
+            <li><a class="dropdown-item" href="{{ url('/penanaman-modal/investasi') }}">Realisasi Investasi</a></li>
+            <li><a class="dropdown-item" href="{{ url('/penanaman-modal/investasi') }}">Promosi Investasi</a></li>
+            <li><a class="dropdown-item" href="{{ url('/penanaman-modal/regulasi') }}">Regulasi</a></li>
           </ul>
         </li>
 
@@ -80,11 +79,12 @@
           <i class="fas fa-chevron-down ms-2 rotate-icon"></i>
         </a>
           <ul class="dropdown-menu" aria-labelledby="dropdown4">
-            <li><a class="dropdown-item" href="#">Galeri</a></li>
+            <li><a class="dropdown-item" href="{{ url('/dokumen-informasi/galeri') }}">Galeri</a></li>
             <li><a class="dropdown-item" href="{{ url('/berita/index') }}">Berita dan Artikel</a></li>
-            <li><a class="dropdown-item" href="{{ url('/download') }}">Produk Hukum</a></li>
-            <li><a class="dropdown-item" href="{{ url('/data-statistik') }}">Dokumen Evalusasi</a></li>
-            <li><a class="dropdown-item" href="{{ url('/data-publik') }}">Dokumen Perencanaan</a></li>
+            <li><a class="dropdown-item" href="{{ url('/dokumen-informasi/agenda') }}">Agenda</a></li>
+            <li><a class="dropdown-item" href="{{ url('/dokumen-informasi/produk-hukum') }}">Produk Hukum</a></li>
+            <li><a class="dropdown-item" href="{{ url('/dokumen-informasi/dokumen-evaluasi') }}">Dokumen Evalusasi</a></li>
+            <li><a class="dropdown-item" href="{{ url('/dokumen-informasi/dokumen-perencanaan') }}">Dokumen Perencanaan</a></li>
             <li><a class="dropdown-item" href="{{ url('/lkip') }}">LKIP</a></li>
             <li><a class="dropdown-item" href="{{ url('/sakip') }}">SAKIP</a></li>
           </ul>
@@ -104,12 +104,12 @@
         </a>
           <ul class="dropdown-menu" aria-labelledby="dropdown8">
             <li><a class="dropdown-item" href="https://ppid.tasikmalayakota.go.id/" target="_blank">Layanan Publik</a></li>
-            <li><a class="dropdown-item" href="#">Sispek</a></li>
-            <li><a class="dropdown-item" href="{{ url('/ikm') }}">IKM</a></li>
+            <li><a class="dropdown-item" href="https://sispek.tasikmalayakota.go.id/front/detailpelayanan/23">Sispek</a></li>
+            <li><a class="dropdown-item" href="{{ url('/layanan-publik/ikm') }}">IKM</a></li>
             <li><a class="dropdown-item" href="https://ppid.tasikmalayakota.go.id/mekanisme-perolehan-informasi/">PPID</a></li>
-            <li><a class="dropdown-item" href="#">SP4N Lapor</a></li>
-            <li><a class="dropdown-item" href="#">Data Statistik Sektoral</a></li>
-            <li><a class="dropdown-item" href="#">Informasi Layanan</a></li>
+            <li><a class="dropdown-item" href="https://www.lapor.go.id/">SP4N Lapor</a></li>
+            <li><a class="dropdown-item" href="{{ url('/layanan-publik/sektoral') }}">Data Statistik Sektoral</a></li>
+            <li><a class="dropdown-item" href="{{ url('/layanan-publik/informasi') }}">Informasi Layanan</a></li>
           </ul>
         </li>
 
@@ -140,7 +140,6 @@
           <li><a class="nav-link" href="{{ url('/visi-misi') }}">Visi Misi</a></li>
           <li><a class="nav-link" href="{{ url('/tupoksi') }}">Tugas Pokok & Fungsi</a></li>
           <li><a class="nav-link" href="{{ url('/struktur-organisasi') }}">Struktur Organisasi</a></li>
-          <li><a class="nav-link" href="{{ url('/agenda') }}">Agenda</a></li>
       </ul>
     </li>
 
@@ -176,11 +175,12 @@
           <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
         </a>
         <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="dokumenMenu">
-        <li><a class="nav-link" href="#">Galeri</a></li>
+        <li><a class="nav-link" href="{{ url('/galeri') }}">Galeri</a></li>
         <li><a class="nav-link" href="{{ url('/berita/index') }}">Berita & Artikel</a></li>
-        <li><a class="nav-link" href="{{ url('/download') }}">Produk Hukum</a></li>
-        <li><a class="nav-link" href="{{ url('/data-statistik') }}">Dokumen Evaluasi</a></li>
-        <li><a class="nav-link" href="{{ url('/data-publik') }}">Dokumen Perencanaan</a></li>
+        <li><a class="nav-link" href="{{ url('/agenda') }}">Agenda</a></li>
+        <li><a class="nav-link" href="{{ url('/produk-hukum') }}">Produk Hukum</a></li>
+        <li><a class="nav-link" href="{{ url('/dokumen-evaluasi') }}">Dokumen Evaluasi</a></li>
+        <li><a class="nav-link" href="{{ url('/dokumen-perencanaan') }}">Dokumen Perencanaan</a></li>
         <li><a class="nav-link" href="{{ url('/lkip') }}">LKIP</a></li>
         <li><a class="nav-link" href="{{ url('/sakip') }}">SAKIP</a></li>
       </ul>
@@ -201,12 +201,12 @@
         </a>
         <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="layananMenu">
         <li><a class="nav-link" href="https://ppid.tasikmalayakota.go.id/" target="_blank">Layanan Publik</a></li>
-        <li><a class="nav-link" href="#">Sispek</a></li>
-        <li><a class="nav-link" href="{{ url('/ikm') }}">IKM</a></li>
+        <li><a class="nav-link" href="https://sispek.tasikmalayakota.go.id/front/detailpelayanan/23">Sispek</a></li>
+        <li><a class="nav-link" href="{{ url('/layanan-publik/ikm') }}">IKM</a></li>
         <li><a class="nav-link" href="https://ppid.tasikmalayakota.go.id/mekanisme-perolehan-informasi/">PPID</a></li>
-        <li><a class="nav-link" href="#">SP4N Lapor</a></li>
-        <li><a class="nav-link" href="#">Data Statistik Sektoral</a></li>
-        <li><a class="nav-link" href="#">Informasi Layanan</a></li>
+        <li><a class="nav-link" href="https://www.lapor.go.id/">SP4N Lapor</a></li>
+        <li><a class="nav-link" href="{{ url('/layanan-publik/sektoral') }}">Data Statistik Sektoral</a></li>
+        <li><a class="nav-link" href="{{ url('/layanan-publik/informasi') }}">Informasi Layanan</a></li>
       </ul>
     </li>
   </ul>

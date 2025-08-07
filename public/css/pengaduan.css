@@ -1,0 +1,43 @@
+.card-body ol,
+.card-body ul {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.card-body h3 {
+  font-size: 1.75rem;
+  font-weight: 800;
+}
+
+.card-body ul li::marker {
+  font-size: 1.5em;
+}
+
+.timeline-with-icons {
+  border-left: 2px solid #000; /* warna hitam solid, bisa 1px juga */
+  position: relative;
+  list-style: none;
+}
+
+.timeline-with-icons .timeline-item {
+  position: relative;
+}
+
+.timeline-with-icons .timeline-item:after {
+  position: absolute;
+  display: block;
+  top: 0;
+}
+
+.timeline-with-icons .timeline-icon {
+  position: absolute;
+  left: -48px;
+  background-color: #f8d7da; /* warna pink muda senada tapi lebih kalem */
+  color: #212121; /* warna hitam keabu-abuan */
+  border-radius: 50%;
+  height: 31px;
+  width: 31px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

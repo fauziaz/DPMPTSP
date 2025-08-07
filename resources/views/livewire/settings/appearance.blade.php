@@ -1,4 +1,4 @@
-<?php
+{{-- <?php
 
 use Livewire\Volt\Component;
 
@@ -16,4 +16,4 @@ new class extends Component {
             <flux:radio value="system" icon="computer-desktop">{{ __('System') }}</flux:radio>
         </flux:radio.group>
     </x-settings.layout>
-</section>
+</section> --}}

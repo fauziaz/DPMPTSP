@@ -1,0 +1,290 @@
+/* ====== STYLE DASAR CAROUSEL ====== */
+.carousel-item {
+  position: relative;
+  height: 100vh; /* tinggi penuh layar */
+}
+.carousel-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* INDICATOR */
+.carousel-indicators {
+  bottom: 1.5rem;
+}
+
+.carousel-indicators [data-bs-target] {
+  width: clamp(6px, 0.8vw, 10px) !important;
+  height: clamp(6px, 0.8vw, 10px) !important;
+  border-radius: 50% !important;
+  background-color: #fff !important;
+  margin: 0 clamp(2px, 0.4vw, 4px) !important;
+  border: none !important;
+  opacity: 1 !important; /* opsional, biar full solid */
+}
+
+.carousel-indicators button.active,
+.carousel-indicators [data-bs-target].active {
+  background-color: #428bca !important;
+}
+
+/* CAPTION */
+.carousel-caption {
+  position: absolute;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -45%);
+  z-index: 5;
+  color: #000;
+  text-align: center;
+  width: 75%;
+  padding: 0 clamp(0.5rem, 2vw, 2rem);
+}
+.carousel-caption h1 {
+  font-size: clamp(28px, 6vw, 72px);
+  margin-bottom: clamp(8px, 2vw, 25px);
+  font-weight: 750;
+  line-height: 1.2;
+}
+.carousel-caption h4 {
+  font-size: clamp(12px, 2vw, 24px);
+  margin-bottom: clamp(16px, 4vw, 50px);
+  line-height: 1.4;
+}
+
+/* BUTTON */
+.btn-custom {
+  color: #fff;
+  border: 2px solid #0D47A1;
+  border-radius: 50px;
+  background-color: #0D47A1;
+  padding: clamp(6px, 1vw, 12px) clamp(12px, 2vw, 28px);
+  font-size: clamp(12px, 2vw, 20px);
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(4px, 0.8vw, 8px);
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.btn-custom:hover {
+  background-color: #001B3D;
+  border-color: #001B3D;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* ARROW */
+.custom-arrow {
+  position: absolute;
+  top: 50%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+.custom-arrow i {
+  font-size: clamp(20px, 4vw, 48px);
+  color: #fff;
+  font-weight: 900;
+}
+.carousel-control-prev.custom-arrow {
+  left: clamp(8px, 2vw, 20px);
+  transform: translate(-30px, -50%);
+}
+.carousel-control-next.custom-arrow {
+  right: clamp(8px, 2vw, 20px);
+  transform: translate(30px, -50%);
+}
+.carousel:hover .carousel-control-prev.custom-arrow {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+.carousel:hover .carousel-control-next.custom-arrow {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+
+/* ====== RESPONSIVE ====== */
+
+/* >>> HP kecil 320px – 576px */
+@media (max-width: 576px) {
+  .carousel-item {
+    height: auto;
+  }
+  .carousel-item img {
+    height: 280px;
+    object-fit: cover;
+  }
+  /* indicator kecil */
+  .carousel-indicators {
+    bottom: 0.8rem;
+  }
+  .carousel-indicators [data-bs-target] {
+    width: 6px !important;
+    height: 6px !important;
+    margin: 0 2px !important;
+  }
+
+  /* caption kecil */
+  .carousel-caption {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    padding: 0 0.5rem;
+    z-index: 15; /* di atas panah */
+  }
+  .carousel-caption h1 {
+    font-size: 22px;
+    margin-bottom: 4px;
+  }
+  .carousel-caption h4 {
+    font-size: 8px;
+    margin-bottom: 12px;
+  }
+  .btn-custom {
+    font-size: 8px;
+    padding: 6px 12px;
+    border-radius: 30px;
+  }
+
+  /* arrow kecil & lebih keluar */
+  .custom-arrow i {
+    font-size: 1rem !important;
+  }
+  .carousel-control-prev.custom-arrow {
+    left: 0px;
+    transform: translate(0, -50%);
+  }
+  .carousel-control-next.custom-arrow {
+    right: 0px;
+    transform: translate(0, -50%);
+  }
+}
+
+/* >>> Tablet kecil 577px – 768px */
+@media (min-width: 577px) and (max-width: 768px) {
+  .carousel-item {
+    height: auto;
+  }
+  .carousel-item img {
+    height: 400px;
+    object-fit: cover;
+  }
+
+  .carousel-indicators {
+    bottom: 1rem;
+  }
+  .carousel-indicators [data-bs-target] {
+    width: 8px !important;
+    height: 8px !important;
+    margin: 0 3px !important;
+  }
+
+  .carousel-caption {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 90%;
+    padding: 0 1rem;
+    z-index: 15;
+  }
+  .carousel-caption h1 {
+    font-size: 40px;
+    margin-bottom: 8px;
+  }
+  .carousel-caption h4 {
+    font-size: 12px;
+    margin-bottom: 20px;
+  }
+  .btn-custom {
+    font-size: 15px;
+    padding: 8px 18px;
+  }
+
+  .custom-arrow i {
+    font-size: 1.5rem !important;
+  }
+  .carousel-control-prev.custom-arrow {
+    left: 10px;
+    transform: translate(0, -50%);
+  }
+  .carousel-control-next.custom-arrow {
+    right: 10px;
+    transform: translate(0, -50%);
+  }
+}
+
+/* >>> Tablet besar 769px – 992px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .carousel-item {
+    height: auto;
+  }
+  .carousel-item img {
+    height: 500px; /* lebih tinggi dari tablet kecil */
+    object-fit: cover;
+  }
+
+  /* indikator sedikit lebih besar */
+  .carousel-indicators {
+    bottom: 1.2rem;
+  }
+  .carousel-indicators [data-bs-target] {
+    width: 10px !important;
+    height: 10px !important;
+    margin: 0 4px !important;
+  }
+
+  /* caption lebih besar dan proporsional */
+  .carousel-caption {
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    width: 85%;
+    padding: 0 1.2rem;
+    z-index: 15;
+  }
+  .carousel-caption h1 {
+    font-size: 48px; /* lebih besar dari tablet kecil */
+    margin-bottom: 10px;
+  }
+  .carousel-caption h4 {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+  .btn-custom {
+    font-size: 18px;
+    padding: 10px 24px;
+    border-radius: 40px;
+  }
+
+  /* arrow sedikit lebih besar dan agak keluar */
+  .custom-arrow i {
+    font-size: 1.8rem !important;
+  }
+  .carousel-control-prev.custom-arrow {
+    left: 15px;
+    transform: translate(0, -50%);
+  }
+  .carousel-control-next.custom-arrow {
+    right: 15px;
+    transform: translate(0, -50%);
+  }
+}
+
+/* Optional animasi caption */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

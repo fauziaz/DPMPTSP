@@ -1,0 +1,61 @@
+card-agenda {
+    overflow-y: auto;
+    max-height: 400px; /* Adjust as needed */
+}
+
+/* Optional scrollbar styling */
+div[style*="overflow-y: auto"]::-webkit-scrollbar {
+    width: 8px;
+}
+
+div[style*="overflow-y: auto"]::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+.custom-checkbox {
+    appearance: none;
+    width: 1.2em;
+    height: 1.2em;
+    border: 1.5px solid #133C6B;
+    border-radius: 0.25em;
+    display: inline-block;
+    position: relative;
+}
+
+.custom-checkbox:checked {
+    background-color: #133C6B;
+    border-color: #133C6B;
+}
+
+.custom-checkbox:focus {
+    box-shadow: 0 0 0 0.2rem rgba(19, 60, 107, 0.25);
+}
+
+.chevron-icon {
+    transition: transform 0.3s ease;
+}
+
+.chevron-icon.rotate {
+    transform: rotate(180deg);
+    transition: transform 0.3s ease;
+}
+
+.collapse-toggle[aria-expanded="true"] .chevron-icon {
+    transform: rotate(180deg);
+}
+
+.tag-box {
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+    background-color: #f8f9fa;
+}
+.tag-input {
+    background-color: #f1f1f1 !important;
+}
+
+.tag-input:focus {
+    border-color: #133C6B;
+    box-shadow: 0 0 0 0.2rem rgba(19, 60, 107, 0.25);
+}

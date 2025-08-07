@@ -1,0 +1,171 @@
+.col-12.col-lg-7 {
+  overflow: visible;
+}
+
+.agenda-past {
+    background-color: #e3f2fd !important; /* biru muda */
+    border: 1px solid #133c6b !important;
+    color: #133c6b !important;
+    transition: background-color 0.2s ease;
+}
+
+.agenda-past:hover {
+    background-color: #bbdefb !important; /* biru sedikit lebih gelap */
+}
+
+.agenda-upcoming {
+    background-color: #f8f9fa !important; /* warna default light */
+    border: 1px solid #ccc !important;
+    color: #6c757d !important;
+    transition: background-color 0.2s ease;
+}
+
+.agenda-upcoming:hover {
+    background-color: #e2e6ea !important; /* sedikit lebih gelap dari default light */
+}
+
+
+.badge-past {
+    background-color: #dee2e6 !important; /* abu-abu */
+    color: #5d5d5d !important; /* abu-abu tua */
+}
+
+.badge-upcoming {
+    background-color: #dee2e6 !important; /* biru */
+    color: #133c6b !important; /* biru tua */
+}
+
+.calendar-day {
+    background-color: transparent;
+    height: 75px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* pindah konten ke kiri */
+    justify-content: flex-start; /* pindah konten ke atas */
+    padding: 4px;
+    border-radius: 5px;
+    position: relative;
+    color: #1b1e23;
+}
+
+.calendar-day:hover {
+    background-color: #E3F2FD;
+    cursor: pointer;
+}
+
+.calendar-day.active {
+    background-color: #1A4373;
+    color: #fff;
+}
+
+.calendar-day.active:hover {
+    background-color: #1A4373;
+    color: #fff;
+    cursor: default;
+}
+
+.calendar-day.active.today:hover {
+    background-color: #1A4373;
+    color: #fff;
+    cursor: default;
+}
+
+.calendar-day.has-event {
+    background-color: #fff3cd; /* Warna kuning lembut */
+    border: none;
+    position: relative;
+}
+
+.calendar-day.today:hover {
+    background-color: aliceblue;
+    color: #1A4373;
+    cursor: default;
+}
+
+.calendar-badge {
+    font-size: 0.75rem;
+    color: #fff;
+    background-color: #083461;  /* Kuning hanya di badge */
+    padding: 2px 6px;
+    border-radius: 5px;
+    margin-top: auto; /* dorong ke bawah */
+    align-self: center; /* ini yang valid, bukan flex-center */
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.calendar-day.active.has-event {
+    background-color: #1A4373; /* tetap override warna aktif */
+}
+
+.calendar-day.has-event {
+    background-color: transparent; /* dari: #fff3cd */
+    border: none;
+    position: relative;
+}
+
+.calendar-today {
+    background-color: aliceblue; 
+    color: #1A4373;
+    padding: 4px;
+}
+
+.table-fixed thead th:nth-child(7) {
+    color: red;
+}
+
+td:nth-child(7) .calendar-day {
+    color: red;
+}
+td:nth-child(7) .calendar-day.active,
+td:nth-child(7) .calendar-day.active:hover,
+td:nth-child(7) .calendar-day.active.today:hover {
+    color: #fff !important;
+    background-color: #1A4373 !important;
+    cursor: default;
+}
+
+.table-fixed thead th,
+.table-fixed tbody td {
+    width: 14.28%; /* 100% / 7 hari */
+    max-width: 14.28%;
+    word-wrap: break-word;
+}
+
+.table-responsive {
+    overflow-x: auto;
+    overflow-y: visible;
+}
+
+.outside-month .calendar-day {
+    color: #adb5bd !important; /* abu-abu muda */
+}
+
+.cursor-pointer {
+        cursor: pointer;
+    }
+    .hover-shadow:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        background-color: darkgray;
+        transition: box-shadow 0.2s ease;
+    }
+
+@media (max-width: 768px) {
+    .table-fixed thead th,
+    .table-fixed tbody td {
+        font-size: 0.75rem;
+        padding: 4px;
+    }
+
+    .table-fixed tbody tr {
+        height: 70px;
+    }
+
+    .calendar-day {
+        height: 100%;
+        padding: 2px;
+    }
+}

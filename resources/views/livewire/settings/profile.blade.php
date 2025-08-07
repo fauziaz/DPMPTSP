@@ -1,4 +1,4 @@
-<?php
+{{-- <?php
 
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -111,4 +111,4 @@ new class extends Component {
 
         <livewire:settings.delete-user-form />
     </x-settings.layout>
-</section>
+</section> --}}

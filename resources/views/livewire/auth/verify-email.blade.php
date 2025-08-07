@@ -1,4 +1,4 @@
-<?php
+{{-- <?php
 
 use App\Livewire\Actions\Logout;
 use Illuminate\Support\Facades\Auth;
@@ -54,4 +54,4 @@ new #[Layout('components.layouts.auth')] class extends Component {
             {{ __('Log out') }}
         </flux:link>
     </div>
-</div>
+</div> --}}

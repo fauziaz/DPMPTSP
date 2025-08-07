@@ -1,0 +1,160 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    overflow-x: hidden;
+}
+
+/* === DEFAULT (desktop ≥1025px) === */
+h3 {
+    font-size: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+h6 {
+    font-size: 25px;
+    color: #616161;
+    text-align: center;
+}
+img {
+    border-radius: 10px;
+}
+
+.btn-custom-lainnya {
+    color: #133C6B;
+    border: 1px solid #133C6B;
+    border-radius: 50px;
+    background-color: transparent;
+    padding: 0.3rem 0.9rem;
+    font-size: 1rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s ease;
+}
+
+.btn-custom-lainnya:hover {
+    background-color: #133C6B;
+    color: #fff;
+}
+
+.back-to-top {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    background-color: #1E88E5;
+    color: #ffffff;
+    border-radius: 50px;
+    padding: 10px 16px;
+    font-size: 20px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    z-index: 9999;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.back-to-top i {
+    font-size: 1.2rem;
+}
+.back-to-top:hover {
+    background-color: #ffffff;
+    border: 2px solid #1E88E5;
+    color: #004cb3;
+}
+
+/* === HP kecil ≤576px === */
+@media (max-width: 576px) {
+    h3 {
+        font-size: 18px;
+    }
+    h6 {
+        font-size: 10px;
+    }
+    .btn-custom-lainnya {
+        font-size: 10px;
+        padding: 4px 10px;
+        border-width: 1px;
+    }
+    .back-to-top {
+        font-size: 12px;
+        padding: 4px 8px;
+        right: 6px;
+        bottom: 6px;
+    }
+    .back-to-top i {
+        font-size: 0.8rem; /* kecilkan iconnya juga */
+    }
+}
+
+/* === Phablet 577–678px === */
+@media (min-width: 577px) and (max-width: 678px) {
+    h3 {
+        font-size: 20px;
+    }
+    h6 {
+        font-size: 12px;
+    }
+    .btn-custom-lainnya {
+        font-size: 12px;
+        padding: 5px 12px;
+        border-width: 1px;
+    }
+    .back-to-top {
+        font-size: 14px;
+        padding: 5px 9px;
+        right: 8px;
+        bottom: 8px;
+    }
+    .back-to-top i {
+        font-size: 0.9rem;
+    }
+}
+
+/* === Tablet 679–1024px === */
+@media (min-width: 679px) and (max-width: 1024px) {
+    h3 {
+        font-size: 26px;
+    }
+    h6 {
+        font-size: 16px;
+    }
+    .btn-custom-lainnya {
+        font-size: 14px;
+        padding: 6px 14px;
+        border-width: 1.5px;
+    }
+    .back-to-top {
+        font-size: 16px;
+        padding: 6px 10px;
+        right: 10px;
+        bottom: 10px;
+    }
+    .back-to-top i {
+        font-size: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInDown {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+@keyframes fadeInLeftToRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}

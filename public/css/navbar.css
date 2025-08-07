@@ -20,6 +20,11 @@
   z-index: 1060;
 }
 
+.lg-backdrop,
+.lg-outer {
+  z-index: 2000 !important;
+}
+
 /* === NAVBAR LINK === */
 .navbar .navbar-nav .nav-link {
   color: #ffffff;

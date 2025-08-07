@@ -1,4 +1,4 @@
-<?php
+{{-- <?php
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
@@ -55,4 +55,4 @@ new #[Layout('components.layouts.auth')] class extends Component {
 
         <flux:button variant="primary" type="submit" class="w-full">{{ __('Confirm') }}</flux:button>
     </form>
-</div>
+</div> --}}

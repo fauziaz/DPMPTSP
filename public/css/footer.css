@@ -1,0 +1,153 @@
+/* === Style dasar footer === */
+footer p {
+  font-size: 20px;
+  margin-bottom: 0.5rem;
+}
+
+footer h7 {
+  font-weight: 600;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 0.5rem;
+  font-size: 16px;
+}
+
+footer ul {
+  list-style: none;
+  padding-left: 0;
+  margin-bottom: 0;
+}
+
+footer li {
+  margin-top: 0.5rem;
+  font-size: 19px;        /* default normal */
+  margin-right: 10px;     /* jarak antar item */
+}
+
+footer a.custom-link {
+  color: white !important;
+  text-decoration: none !important;
+  transition: color 0.3s ease;
+  font-size: 19px;        /* default normal */
+}
+
+footer a.custom-link:hover {
+  color: #26282b !important;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255,255,255,0.1);
+  color: white !important;
+  font-size: 25px;
+  margin-right: 10px;
+  transition: all 0.3s ease;
+  text-decoration: none !important;
+}
+
+.social-links a:hover {
+  background-color: #26282b !important;
+  transform: translateY(-3px);
+  color: #fff !important;
+}
+
+.gambar-footer {
+  max-width:250px; 
+  border-radius: 0;
+}
+
+/* ================= RESPONSIVE ================= */
+/* >>> HP kecil 320px – 576px */
+@media (max-width: 576px) {
+  footer p {
+  font-size: 10px;
+  }
+  footer li {
+    font-size: 9px;      /* lebih kecil */
+    margin-right: 6px;
+    margin-top: 0.2rem;
+  }
+  footer a.custom-link {
+    font-size: 10px;
+  }
+  footer h7 {
+    font-size: 10px;
+    margin-bottom: 0.4rem;
+    padding-bottom: 0.2rem;
+  }
+  .social-links a {
+    width: 24px;
+    height: 24px;
+    font-size: 12px;
+    margin-right: 4px;
+  }
+  .gambar-footer {
+    max-width:110px; 
+    border-radius: 0;
+  }
+}
+
+/* >>> Tablet kecil 577px – 768px */
+@media (min-width: 577px) and (max-width: 768px) {
+  footer p {
+  font-size: 12px;
+  }
+  footer li {
+    font-size: 11px;
+    margin-right: 8px;
+    margin-top: 0.4rem;
+  }
+  footer a.custom-link {
+    font-size: 12px;
+  }
+  footer h7 {
+    font-size: 12px;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.25rem;
+  }
+  .social-links a {
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    margin-right: 6px;
+  }
+  .gambar-footer {
+    max-width:145px; 
+    border-radius: 0;
+  }
+}
+
+/* >>> Tablet besar 769px – 1440px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  footer p {
+  font-size: 14px;
+  }
+  footer li {
+    font-size: 13px;
+    margin-right: 9px;
+    margin-top: 0.45rem;
+  }
+  footer a.custom-link {
+    font-size: 14px;
+  }
+  footer h7 {
+    font-size: 14px;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.3rem;
+  }
+  .social-links a {
+    width: 30px;
+    height: 30px;
+    font-size: 15px;
+    margin-right: 8px;
+  }
+  .gambar-footer {
+    max-width:200px; 
+    border-radius: 0;
+  }
+}
