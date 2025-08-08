@@ -119,7 +119,7 @@
 </nav>
 
 <!-- Sidebar -->
-<div id="sidebarMenu" class="sidebar-menu d-md-none">
+<div id="sidebarMenu" class="sidebar-menu d-block d-lg-none">
   <ul class="nav flex-column px-3">
     <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Beranda</a></li>
 
@@ -145,44 +145,84 @@
 
     <!-- Penanaman Modal -->
     <li class="nav-item">
-        <a class="d-flex justify-content-between align-items-center" 
-          data-bs-toggle="collapse"
-          href="#modalMenu" 
-          role="button" 
-          aria-expanded="false"
-          ariala-controls="modalMenu">
-          Penanaman Modal
-          <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
-        </a>
-        <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="modalMenu">
-        <li><a class="nav-link" href="https://lkpmonline.bkpm.go.id/lkpm_perka17/login.jsp" target="_blank">LKPM</a></li>
-        <li><a class="nav-link" href="{{ url('/potensi-investasi') }}">Potensi Investasi</a></li>
-        <li><a class="nav-link" href="{{ url('/realisasi-investasi') }}">Realisasi Investasi</a></li>
-        <li><a class="nav-link" href="{{ url('/promosi-investasi') }}">Promosi Investasi</a></li>
+      <a class="d-flex justify-content-between align-items-center" 
+        data-bs-toggle="collapse"
+        href="#modalMenu" 
+        role="button" 
+        aria-expanded="false"
+        aria-controls="modalMenu">
+        Penanaman Modal
+        <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
+      </a>
+
+      <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="modalMenu">
+        <li>
+          <a class="nav-link" href="https://lkpmonline.bkpm.go.id/lkpm_perka17/login.jsp" target="_blank">
+            LKPM
+          </a>
+        </li>
+
+        <!-- Nested Dropdown Trigger -->
+        <li>
+          <a class="d-flex justify-content-between align-items-center"
+            data-bs-toggle="collapse"
+            href="#investasiSubmenu"
+            role="button"
+            aria-expanded="false"
+            aria-controls="investasiSubmenu">
+            Investasi
+            <i class="fas fa-chevron-right ms-2 nested-toggle-icon"></i>
+          </a>
+
+          <!-- Nested Dropdown Items -->
+          <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="investasiSubmenu">
+            <li><a class="nav-link" href="{{ url('/potensi-investasi') }}">Potensi Investasi</a></li>
+            <li><a class="nav-link" href="{{ url('/realisasi-investasi') }}">Realisasi Investasi</a></li>
+            <li><a class="nav-link" href="{{ url('/promosi-investasi') }}">Promosi Investasi</a></li>
+          </ul>
+        </li>
+
         <li><a class="nav-link" href="{{ url('/regulasi') }}">Regulasi</a></li>
       </ul>
     </li>
 
     <!-- Dokumen & Informasi -->
     <li class="nav-item">
-        <a class="d-flex justify-content-between align-items-center" 
-          data-bs-toggle="collapse"
-          href="#dokumenMenu" 
-          role="button" 
-          aria-expanded="false"
-          aria-controls="dokumenMenu">
-          Dokumen & Informasi
-          <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
-        </a>
-        <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="dokumenMenu">
+      <a class="d-flex justify-content-between align-items-center" 
+        data-bs-toggle="collapse"
+        href="#dokumenMenu" 
+        role="button" 
+        aria-expanded="false"
+        aria-controls="dokumenMenu">
+        Dokumen & Informasi
+        <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
+      </a>
+
+      <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="dokumenMenu">
         <li><a class="nav-link" href="{{ url('/galeri') }}">Galeri</a></li>
         <li><a class="nav-link" href="{{ url('/berita/index') }}">Berita & Artikel</a></li>
         <li><a class="nav-link" href="{{ url('/agenda') }}">Agenda</a></li>
-        <li><a class="nav-link" href="{{ url('/produk-hukum') }}">Produk Hukum</a></li>
-        <li><a class="nav-link" href="{{ url('/dokumen-evaluasi') }}">Dokumen Evaluasi</a></li>
-        <li><a class="nav-link" href="{{ url('/dokumen-perencanaan') }}">Dokumen Perencanaan</a></li>
-        <li><a class="nav-link" href="{{ url('/lkip') }}">LKIP</a></li>
-        <li><a class="nav-link" href="{{ url('/sakip') }}">SAKIP</a></li>
+        
+        <!-- SUBMENU "Dokumen" -->
+        <li>
+          <a class="d-flex justify-content-between align-items-center" 
+            data-bs-toggle="collapse"
+            href="#submenuDokumen"
+            role="button"
+            aria-expanded="false"
+            aria-controls="submenuDokumen">
+            Dokumen
+            <i class="fas fa-chevron-right ms-2 toggle-icon"></i>
+          </a>
+
+          <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="submenuDokumen">
+            <li><a class="nav-link" href="{{ url('/produk-hukum') }}">Produk Hukum</a></li>
+            <li><a class="nav-link" href="{{ url('/dokumen-evaluasi') }}">Dokumen Evaluasi</a></li>
+            <li><a class="nav-link" href="{{ url('/dokumen-perencanaan') }}">Dokumen Perencanaan</a></li>
+            <li><a class="nav-link" href="{{ url('/lkip') }}">LKIP</a></li>
+            <li><a class="nav-link" href="{{ url('/sakip') }}">SAKIP</a></li>
+          </ul>
+        </li>
       </ul>
     </li>
 
@@ -190,16 +230,16 @@
 
     <!-- Layanan Publik -->
     <li class="nav-item">
-        <a class="d-flex justify-content-between align-items-center" 
-          data-bs-toggle="collapse"
-          href="#layananMenu" 
-          role="button" 
-          aria-expanded="false"
-          aria-controls="layananMenu">
-          Layanan Publik
-          <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
-        </a>
-        <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="layananMenu">
+      <a class="d-flex justify-content-between align-items-center" 
+        data-bs-toggle="collapse"
+        href="#layananMenu" 
+        role="button" 
+        aria-expanded="false"
+        aria-controls="layananMenu">
+        Layanan Publik
+        <i class="fas fa-chevron-down ms-2 toggle-icon"></i>
+      </a>
+      <ul class="collapse list-unstyled ps-3 border-start border-2 border-light" id="layananMenu">
         <li><a class="nav-link" href="https://ppid.tasikmalayakota.go.id/" target="_blank">Layanan Publik</a></li>
         <li><a class="nav-link" href="https://sispek.tasikmalayakota.go.id/front/detailpelayanan/23">Sispek</a></li>
         <li><a class="nav-link" href="{{ url('/layanan-publik/ikm') }}">IKM</a></li>
@@ -257,4 +297,3 @@
     });
   });
 </script>
-

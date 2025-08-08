@@ -1,4 +1,4 @@
-<footer class="text-white pt-4" style="background-color: #133C6B;">
+<footer class="text-white pt-4 mt-4" style="background-color: #133C6B;">
     <div class="container">
         <!-- ROW PERTAMA: Logo + alamat -->
         <div class="row">

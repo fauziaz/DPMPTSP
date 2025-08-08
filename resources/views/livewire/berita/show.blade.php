@@ -60,7 +60,7 @@
         <div class="tab-content">
           <div id="tab-terbaru">
             @foreach ($beritas_terkait as $item)
-              <div class="tab-card mb-3 p-2 rounded border">
+              <div class="tab-card mb-3 p-2 rounded">
                 <a href="{{ route('berita.detail', $item->id) }}" class="text-decoration-none text-dark">
                   <div class="d-flex gap-3 align-items-start">
                     <div class="thumbnail-wrapper">

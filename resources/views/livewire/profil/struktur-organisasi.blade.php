@@ -10,7 +10,7 @@
         </ol>
         </nav>
         <h2 class="display-5 fw-bold">Struktur Organisasi DPMPTSP Kota Tasikmalaya</h2>
-        <p class="lead">...</p>
+        <p class="lead">DPMPTSP Tasikmalaya memiliki struktur organisasi yang disusun untuk mendukung pelaksanaan tugas dan fungsi secara terkoordinasi dan efektif.</p>
     </div>
     </div>
 
@@ -19,7 +19,6 @@
         <div class="content-card">
             <div class="row justify-content-center">
                 <img src="{{ asset('image/struktur-dpmptsp.jpg') }}" alt="Struktur Organisasi" class="img-fluid mb-4">
-                <button class="btn btn-primary">Cetak Struktur Organisasi</button>
             </div>
         </div>
         </div>

@@ -57,7 +57,7 @@
             <div class="row">
             <!-- Pendidikan -->
             <div class="col-md-6">
-                <h6 class="fw-bold text-5c768d">Riwayat Pendidikan:</h6>
+                <h6 class="fw-bold text-start text-profil-judul">Riwayat Pendidikan:</h6>
                 <div class="timeline-wrapper">
                 <div class="timeline-block">
                     <div class="timeline-title">Magister Ilmu Hukum</div>
@@ -82,7 +82,7 @@
 
             <!-- Pekerjaan -->
             <div class="col-md-6">
-                <h6 class="fw-bold text-5c768d">Riwayat Pekerjaan:</h6>
+                <h6 class="fw-bold text-start text-profil-judul">Riwayat Pekerjaan:</h6>
                 <div class="timeline-wrapper">
                 <div class="timeline-block"><div class="timeline-title">Kepala Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu</div></div>
                 <div class="timeline-block"><div class="timeline-title">Kepala Badan Pengelola Keuangan dan Aset Daerah</div></div>
