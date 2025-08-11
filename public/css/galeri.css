@@ -90,7 +90,7 @@ body.lg-on .navbar {
 /* max 576px → 1 kolom */
 @media (max-width: 576px) {
 
-   #lightgallery-foto {
+  #lightgallery-foto {
     --bs-gutter-x: 0.25rem; /* jarak horizontal antar kolom */
     --bs-gutter-y: 0.25rem; /* jarak vertical antar kolom */
   }
@@ -100,12 +100,23 @@ body.lg-on .navbar {
     max-width: 33.3333% !important;
     width: 33.3333% !important;
   }
+
+  #lightgallery-video {
+    --bs-gutter-x: 0.25rem; /* jarak horizontal antar kolom */
+    --bs-gutter-y: 0.25rem; /* jarak vertical antar kolom */
+  }
+
+  #lightgallery-video > .galeri-col {
+    flex: 0 0 33.3333% !important;
+    max-width: 33.3333% !important;
+    width: 33.3333% !important;
+  }
 }
 
 /* 577–678px → 2 kolom */
 @media (min-width: 577px) and (max-width: 678px) {
 
- #lightgallery-foto {
+  #lightgallery-foto {
     --bs-gutter-x: 0.5rem; /* jarak horizontal antar kolom */
     --bs-gutter-y: 0.5rem; /* jarak vertical antar kolom */
   }
@@ -115,11 +126,28 @@ body.lg-on .navbar {
     max-width: 33.3333% !important;
     width: 33.3333% !important;
   }
+
+  #lightgallery-video {
+    --bs-gutter-x: 0.5rem; /* jarak horizontal antar kolom */
+    --bs-gutter-y: 0.5rem; /* jarak vertical antar kolom */
+  }
+
+  #lightgallery-video > .galeri-col {
+    flex: 0 0 33.3333% !important;
+    max-width: 33.3333% !important;
+    width: 33.3333% !important;
+  }
 }
 
 /* 679–991px → 3 kolom */
 @media (min-width: 679px) and (max-width: 991px) {
   #lightgallery-foto > .galeri-col {
+    flex: 0 0 33.3333% !important;
+    max-width: 33.3333% !important;
+    width: 33.3333% !important;
+  }
+
+  #lightgallery-video > .galeri-col {
     flex: 0 0 33.3333% !important;
     max-width: 33.3333% !important;
     width: 33.3333% !important;

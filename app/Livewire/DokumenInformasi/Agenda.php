@@ -6,6 +6,7 @@ use App\Models\AgendaModel;
 use Livewire\Component;
 use Carbon\Carbon;
 use Carbon\CarbonInterface;
+use Illuminate\Support\Facades\DB;
 
 class Agenda extends Component
 {
@@ -53,14 +54,29 @@ class Agenda extends Component
     }  
 
     public function tampilDetail($eventId)
-    {
-        $event = collect($this->events[$this->selectedDate])->firstWhere('id', $eventId);
+{
+    $detailData = AgendaModel::findOrFail($eventId);
+    // $status = $this->hitungStatus($event->waktu_mulai, $event->waktu_selesai);
+    $status = $this->hitungStatus($detailData->waktu_mulai, $detailData->waktu_selesai);
 
-        if ($event) {
-            $this->detailData = (object) $event; // Jika data array, konversi ke object
-            $this->showDetail = true;
-        }
-    }
+
+    // $this->detailData = $detailData;
+    $this->detailData = $detailData;    
+
+    $this->detailData->status_dinamis = $status;
+    $this->showDetail = true; // << WAJIB supaya modal terbuka
+}
+
+
+    // public function tampilDetail($eventId)
+    // {
+    //     $event = collect($this->events[$this->selectedDate])->firstWhere('id', $eventId);
+
+    //     if ($event) {
+    //         $this->detailData = (object) $event; // Jika data array, konversi ke object
+    //         $this->showDetail = true;
+    //     }
+    // }
 
     public function tutupDetail()
     {
@@ -75,19 +91,16 @@ class Agenda extends Component
         $kategoriSet = [];
 
         foreach ($this->selectedTipeAcara as $tipe) {
-            if ($tipe === 'Pimpinan') {
-                $kategoriSet = array_merge($kategoriSet, [
-                    'Gubernur', 'Wakil Gubernur', 'Sekretaris Daerah', 
-                    'Ketua TP-PKK', 'Pj Gubernur', 'PLH Sekretaris Daerah', 
-                    'Pj Ketua TP-PKK']);
-            } elseif ($tipe === 'Perangkat Daerah') {
-                $kategoriSet = array_merge($kategoriSet, [
-                    'Seremoni', 'Program Unggulan', 'Kegiatan Umum']);
-            } elseif($tipe === 'Umum') {
-                $kategoriSet = array_merge($kategoriSet, [
-                    'Hiburan', 'Pendidikan', 'Sosial Budaya', 
-                    'Olahraga', 'Lingkungan']);
+
+            $kategoriMap = [
+                'Umum' => ['Hiburan', 'Pendidikan', 'Sosial Budaya', 'Olahraga', 'Lingkungan'],
+                // tipe lain tinggal tambah di sini
+            ];
+
+            if (isset($kategoriMap[$tipe])) {
+                $kategoriSet = array_merge($kategoriSet, $kategoriMap[$tipe]);
             }
+
         }
 
         $this->kategoriOptions = array_unique($kategoriSet);
@@ -160,12 +173,6 @@ class Agenda extends Component
         $this->selectedDate = $this->currentWeekStartDate->copy()->toDateString();
         $this->updateCurrentWeekDates();
         $this->loadEvents();
-
-        // $this->selectedDate = Carbon::parse($this->selectedDate)->subWeek()->toDateString();
-        // $this->weekOffset--;
-        // $this->updateSelectedDateByOffset();    
-        // $this->currentWeekStartDate = $this->currentWeekStartDate->copy()->subWeek();    
-        // $this->loadEvents();    
     }   
 
     public function nextWeek()
@@ -174,12 +181,6 @@ class Agenda extends Component
         $this->selectedDate = $this->currentWeekStartDate->copy()->toDateString();
         $this->updateCurrentWeekDates();
         $this->loadEvents();
-
-        // $this->selectedDate = Carbon::parse($this->selectedDate)->addWeek()->toDateString();
-        // $this->weekOffset++;
-        // $this->updateSelectedDateByOffset();
-        // $this->currentWeekStartDate = $this->currentWeekStartDate->copy()->addWeek();
-        // $this->loadEvents();   
     }
 
     public function updateCurrentWeekDates()
@@ -208,7 +209,6 @@ class Agenda extends Component
     $this->loadEvents();
 }
 
-
     public function getWeekDatesProperty()
     {
         $start = $this->currentWeekStartDate->copy();
@@ -217,15 +217,6 @@ class Agenda extends Component
             return $start->copy()->addDays($i);
         });
     }
-
-
-    // public function getCurrentWeekDatesProperty()
-    // {
-    //     $startOfWeek = Carbon::parse($this->selectedDate)->startOfWeek(CarbonInterface::MONDAY);
-    //     return collect(range(0, 6))->map(function ($day) use ($startOfWeek) {
-    //         return $startOfWeek->copy()->addDays($day);
-    //     });
-    // }
     
     public function updatedViewMode()
     {
@@ -242,7 +233,7 @@ class Agenda extends Component
         }
 
         if ($mode === 'minggu') {
-            $this->selectedDate = Carbon::today()->toDateString(); // <-- Tambah ini
+            $this->selectedDate = Carbon::today()->toDateString();
             $this->updateCurrentWeekDates();
         }
 
@@ -252,41 +243,123 @@ class Agenda extends Component
     public function loadEvents()
 {
     $query = AgendaModel::query()
-        ->when(!empty($this->selectedTipeAcara), function ($q) {
-            $q->whereIn('tipe_acara', $this->selectedTipeAcara);
-        })
-        ->when(!empty($this->selectedKategori), function ($q) {
-            $q->whereIn('kategori', $this->selectedKategori);
-        })
-        ->when(!empty($this->tags), function ($q) {
-            foreach ($this->tags as $tag) {
-                $q->where('tags', 'like', '%' . $tag . '%');
-            }
-        })
-        ->when(!empty($this->searchJudul), function ($q) {
-            $q->where('judul', 'like', '%' . $this->searchJudul . '%');
-        });
+        ->when(!empty($this->selectedTipeAcara), fn($q) => $q->whereIn('tipe_acara', $this->selectedTipeAcara))
+        ->when(!empty($this->selectedKategori), fn($q) => $q->whereIn('kategori', $this->selectedKategori))
+        ->when(!empty($this->searchJudul), fn($q) => $q->where('judul', 'like', '%' . $this->searchJudul . '%'));
 
     $events = $query->get()->map(function ($event) {
+        $status = $this->hitungStatus($event->waktu_mulai, $event->waktu_selesai);
+
         return [
             'id' => $event->id,
             'judul' => $event->judul,
-            'tanggal' => $event->tanggal,
+            // pastikan tanggal selalu string Y-m-d
+            'tanggal' => $event->tanggal instanceof \DateTimeInterface ? $event->tanggal->format('Y-m-d') : $event->tanggal,
             'kategori' => $event->kategori,
             'waktu_mulai' => $event->waktu_mulai,
             'waktu_selesai' => $event->waktu_selesai,
             'tipe_event' => $event->tipe_event,
             'tipe_acara' => $event->tipe_acara,
-            'status' => $event->status,
+            'status_dinamis' => $status,
         ];
     });
+
+    // $groupedByDate = $events
+    //     ->filter(fn($e) => !empty($e['tanggal']))
+    //     ->groupBy(fn($e) => $e['tanggal']) // sudah pasti string, jadi bisa langsung groupBy
+    //     ->map(fn($group) => $group->values()->all());
 
     $groupedByDate = collect($events)
         ->filter(fn ($e) => !empty($e['tanggal']))
         ->groupBy(fn ($e) => Carbon::parse((string) $e['tanggal'])->toDateString())
         ->map(fn ($group) => array_values($group->all()));
-    
+
+
     $this->events = $groupedByDate->toArray();
+}
+
+
+//     public function loadEvents()
+// {
+//     $query = AgendaModel::query()
+//         ->when(!empty($this->selectedTipeAcara), fn($q) => $q->whereIn('tipe_acara', $this->selectedTipeAcara))
+//         ->when(!empty($this->selectedKategori), fn($q) => $q->whereIn('kategori', $this->selectedKategori))
+//         ->when(!empty($this->searchJudul), fn($q) => $q->where('judul', 'like', '%' . $this->searchJudul . '%'));
+
+//     $events = $query->get()->map(function ($event) {
+//         $status = $this->hitungStatus($event->waktu_mulai, $event->waktu_selesai);
+
+//         return [
+//             'id' => $event->id,
+//             'judul' => $event->judul,
+//             'tanggal' => $event->tanggal,
+//             'kategori' => $event->kategori,
+//             'waktu_mulai' => $event->waktu_mulai,
+//             'waktu_selesai' => $event->waktu_selesai,
+//             'tipe_event' => $event->tipe_event,
+//             'tipe_acara' => $event->tipe_acara,
+//             'status_dinamis' => $status,
+//         ];
+//     });
+
+//     $groupedByDate = $events
+//         ->filter(fn($e) => !empty($e['tanggal']))
+//         ->groupBy(fn($e) => Carbon::parse($e['tanggal'])->toDateString())
+//         ->map(fn($group) => $group->values()->all());
+
+//     $this->events = $groupedByDate->toArray();
+// }
+
+
+//     public function loadEvents()
+// {
+//     $query = AgendaModel::query()
+//         ->when(!empty($this->selectedTipeAcara), function ($q) {
+//             $q->whereIn('tipe_acara', $this->selectedTipeAcara);
+//         })
+//         ->when(!empty($this->selectedKategori), function ($q) {
+//             $q->whereIn('kategori', $this->selectedKategori);
+//         })
+//         ->when(!empty($this->searchJudul), function ($q) {
+//             $q->where('judul', 'like', '%' . $this->searchJudul . '%');
+//         });
+
+//     $events = $query->get()->map(function ($event) {
+//         return [
+//             'id' => $event->id,
+//             'judul' => $event->judul,
+//             'tanggal' => $event->tanggal,
+//             'kategori' => $event->kategori,
+//             'waktu_mulai' => $event->waktu_mulai,
+//             'waktu_selesai' => $event->waktu_selesai,
+//             'tipe_event' => $event->tipe_event,
+//             'tipe_acara' => $event->tipe_acara,
+//         'status_dinamis' => $this->hitungStatus($event->waktu_mulai, $event->waktu_selesai),
+//         ];
+//     });
+
+//     $groupedByDate = collect($events)
+//         ->filter(fn ($e) => !empty($e['tanggal']))
+//         ->groupBy(fn ($e) => Carbon::parse((string) $e['tanggal'])->toDateString())
+//         ->map(fn ($group) => array_values($group->all()));
+    
+//     $this->events = $groupedByDate->toArray();
+// }
+
+private function hitungStatus($waktu_mulai, $waktu_selesai)
+{
+    $now = now();
+
+    $mulai = Carbon::parse($waktu_mulai);
+    $selesai = Carbon::parse($waktu_selesai);
+
+    if ($now->lt($waktu_mulai)) {
+        return 'Belum Dimulai';
+    } elseif ($now->between($waktu_mulai, $waktu_selesai)) {
+        return 'Berlangsung';
+    } else {
+        return 'Selesai';
+    }
 }
 
 

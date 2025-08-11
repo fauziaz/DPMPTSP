@@ -129,7 +129,16 @@
                             </div>
                         </div>
 
-                    </div>                        
+                    </div>
+                    <div class="col-lg-12 col-md-12 mb-4">
+                        <h2 class="text-center mb-4">Tekan tombol di bawah ini untuk melapor:</h2>
+                        <div class="d-flex justify-content-center">
+                            <a href="https://www.lapor.go.id" target="_blank" class="btn btn-custom btn-block btn-lg px-4" 
+                            style="background-color: red; border-color: red;">
+                                <i class="bi bi-chat-dots-fill me-2"></i> LAPOR!
+                            </a>
+                        </div>   
+                    </div>                     
                 </div>
             </div>
         </div>

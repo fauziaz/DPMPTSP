@@ -1,15 +1,26 @@
-<footer class="text-white pt-4" style="background-color: #133C6B;">
+<footer class="text-white pt-4 mt-4" style="background-color: #133C6B;">
     <div class="container">
         <!-- ROW PERTAMA: Logo + alamat -->
         <div class="row">
             <div class="col-12 p-3 text-md-start">
-                <img class="mb-2 gambar-footer" src="https://dpmptsp.tasikmalayakota.go.id/public_html/desktop/assets/assets/img/logo-dpmptsp-tasikmalaya.png" alt="Logo">
+                <img class="burn-effect mb-2 col-12 gambar-footer" style="border-radius: 25px;" src="https://dpmptsp.tasikmalayakota.go.id/public_html/desktop/assets/assets/img/logo-dpmptsp-tasikmalaya.png" alt="Logo">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 col-md-3 p-3">
                 <p class="mt-2 mb-1">
                     Komplek Balekota, Jl. Letnan Harun No.1, Sukarindik, Kec. Bungursari, Kota Tasikmalaya, Jawa Barat 46113
                 </p>
+            </div>
+            <div class="col-6 col-md-3 p-3">
                 <p class="mb-1"><strong>Phone:</strong> (0265) 314375</p>
+            </div>
+            <div class="col-6 col-md-3 p-3">
                 <p><strong>Email:</strong> dpmptsp@tasikmalayakota.go.id</p>
-                <div class="social-links mb-4">
+            </div>
+            <div class="col-6 col-md-3 p-3">
+                 <div class="social-links mb-4">
                     <a href="#"><i class="fab fa-facebook-f"></i></a>
                     <a href="#"><i class="fab fa-twitter"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
@@ -47,7 +58,6 @@
                     @endforeach
                 </ul>
             </div>
-            
             <div class="col-6 col-md-3 p-3">
                 <h7>Dokumentasi dan Informasi</h7>
                 <ul>
@@ -60,8 +70,7 @@
                         <li><a href="{{ $url }}" class="custom-link">{{ $dokumen['name'] }}</a></li>
                     @endforeach
                 </ul>
-            </div>
-            
+            </div> 
             <div class="col-6 col-md-3 p-3">
                 <h7>Layanan Publik</h7>
                 <ul>

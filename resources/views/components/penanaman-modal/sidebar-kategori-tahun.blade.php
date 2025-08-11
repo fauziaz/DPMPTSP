@@ -17,7 +17,7 @@
                 class="list-group-item custom-year-item {{ $kategoriDipilih == $kategori ? 'active-year' : '' }}"
                 wire:click="filterByKategori('{{ $kategori }}')"
             >
-            {{ 'Investasi ' . ucwords(str_replace('_', ' ', $kategori)) }}
+            {{ ucwords(str_replace('_', ' ', $kategori)) .' ' . 'Investasi' }}
             </li>
             @endforeach
         </ul>

@@ -7,7 +7,7 @@
         subtitle="Dokumen resmi yang menjadi dasar hukum layanan DPMPTSP Kota Tasikmalaya"
     />
 
-    <div class="section-wrapper" style="padding-bottom: 100px;">
+    <div class="section-wrapper">
         <div class="container">
             <div class="content-card">
                 <div class="row">
@@ -38,7 +38,7 @@
                                     tanggal="{{ \Carbon\Carbon::parse($regulasi->tanggal)->locale('id')->translatedFormat('l, d F Y') }}"
                                     :id="$regulasi->id"
                                     :file_path="$regulasi->file_path"
-                                    :iconClass="$this->getIconClass($regulasi->file_path)"
+                                    :iconClass="$regulasi"
                                 />
                             @endforeach
                         @else

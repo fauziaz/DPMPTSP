@@ -61,6 +61,13 @@ footer a.custom-link:hover {
   border-radius: 0;
 }
 
+.burn-effect {
+  box-shadow:
+  5px 5px 5px 0 rgba(0, 31, 63, 0.7),     /* Navy shadow dasar */
+  5px 5px 5px 0 rgba(0, 170, 255, 0.5),   /* Biru terang menyala */
+  5px 5px 5px 0 rgba(200, 240, 255, 0.3); /* Putih kebiruan lembut */
+}
+
 /* ================= RESPONSIVE ================= */
 /* >>> HP kecil 320px – 576px */
 @media (max-width: 576px) {

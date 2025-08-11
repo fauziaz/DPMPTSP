@@ -45,7 +45,7 @@
         <div class="text-end mt-4">
             <a href="{{ url('dokumen-informasi/show-galeri') }}">
                 <button class="btn btn-custom-lainnya">
-                    Tampilkan Lebih Banyak Foto
+                    Tampilkan Semua Foto
                     <i class="bi bi-arrow-up-right ms-2"></i>
                 </button>
             </a>
@@ -105,7 +105,7 @@
         <div class="text-end mt-4">
             <a href="{{ url('dokumen-informasi/show-video') }}">
                 <button class="btn btn-custom-lainnya">
-                    Tampilkan Lebih Banyak Video
+                    Tampilkan Semua Video
                     <i class="bi bi-arrow-up-right ms-2"></i>
                 </button>
             </a>

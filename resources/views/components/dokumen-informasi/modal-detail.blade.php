@@ -7,28 +7,22 @@
     'detailData' => null])
 
 @if($showDetail && $detailData)
-<div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.5);">
+<div class="modal fade show d-block" tabindex="-1" style="background:rgba(0,0,0,0.5); z-index: 2000 !important;">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header flex-column align-items-start">
-                <p class="text-uppercase modal-label mb-1">
-                    {{ $label }}
-                </p>
-                <h3 class="modal-title mb-0">
-                    {{ $judul }}
-                </h3>
-                <button type="button" class="btn-close position-absolute end-0 top-0 m-3"
-                    wire:click="tutupDetail"></button>
+                <p class="text-uppercase modal-label mb-1">{{ $label }}</p>
+                <h3 class="modal-title mb-0"> {{ $judul }} </h3>
+                <button type="button" class="btn-close position-absolute end-0 top-0 m-3" wire:click="tutupDetail"></button>
             </div>
             <div class="modal-body">                    
                 <!-- Deskripsi -->
                 <div class="mb-4 row modal-info-grid text-start">
                     <div class="col-12 h-100 modal-info-item">
-                        <i class="bi bi-info-circle modal-info-icon"></i>
-                        <div>
-                            <span class="modal-info-label">Deskripsi Dokumen</span>
-                            <span class="modal-info-value mt-2">{{ $detailData->deskripsi }}</span>
-                        </div>
+                    <i class="bi bi-info-circle modal-info-icon"></i>
+                    <div>
+                        <span class="modal-info-label">Deskripsi Dokumen</span>
+                        <span class="modal-info-value mt-2">{{ $detailData->deskripsi }}</span>
                     </div>
                 </div>
                 <!-- Grid Informasi -->
@@ -76,27 +70,10 @@
                     Tutup
                 </button>
                 <button wire:click="unduh({{ $detailData->id }})" class="btn btn-unduh">
-                    <i class="bi bi-download me-2"></i> Unduh Dokumen
+                    <i class="bi bi-download me-2"></i> Lihat Dokumen
                 </button>
             </div>
         </div>
     </div>
 </div>
 @endif
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    // Saat modal dibuka
-    document.querySelectorAll('.modal').forEach(function(modal) {
-        modal.addEventListener('show.bs.modal', function () {
-            document.querySelector('.navbar').classList.add('d-none');
-        });
-
-        // Saat modal ditutup
-        modal.addEventListener('hidden.bs.modal', function () {
-            document.querySelector('.navbar').classList.remove('d-none');
-        });
-    });
-});
-
-</script>

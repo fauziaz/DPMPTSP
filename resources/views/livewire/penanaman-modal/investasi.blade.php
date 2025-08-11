@@ -4,10 +4,10 @@
         background="{{ asset('https://blogger.googleusercontent.com/img/a/AVvXsEh2mwYKI8kIz6k7klv3_jgGlDLT7sOVSsJUmNl8pMKUFXm7Bj7EGCSkJ5dddNtwG1EuTzBQaiczmCkxz2AmVYeKHaT7B6hENTqTNmG0dqifoi4UQUIUR4pLXL-eu6UkBsZiPvaQ0IOa69yQzbSY9ywcFM5WLEam5IC7I9cqjcaKh6iG6_97KR3aIHEV=w640-h352') }}"
         :breadcrumbs="['Beranda' => '/']"
         title="Investasi"
-        subtitle="Dokumen resmi yang menjadi dasar hukum layanan DPMPTSP Kota Tasikmalaya"
+        subtitle="Temukan nformasi seputar peluang dan panduan investasi DPMTPTSP Kota Tasikmalaya."
     />
 
-    <div class="section-wrapper" style="padding-bottom: 100px;">
+    <div class="section-wrapper">
         <div class="container">
             <div class="content-card">
                 <div class="row">

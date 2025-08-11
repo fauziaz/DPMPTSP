@@ -7,9 +7,9 @@
         subtitle="Berikut Agenda DPMPTSTP Kota Tasikmalaya"
     />
 
-    <div class="section-wrapper py-5" style="padding-bottom: 100px;">
+    <div class="section-wrapper py-5">
         <div class="container">
-            <div class="content-card-agenda" style="max-height: 800px; background: white; border-radius: 10px; padding: 40px;">
+            <div class="content-card content-card-agenda" style="background: white; border-radius: 10px; padding: 40px;">
                 <div class="row">
                     <!-- Kiri: Filter -->
                     <div class="col-12 col-lg-2">
@@ -21,31 +21,13 @@
                                 id="tipeAcaraChevron"
                                 role="button"
                                 onclick="toggleTipeAcaraCollapse()"
-                                {{--data-bs-toggle="collapse"
+                                data-bs-toggle="collapse"
                                 data-bs-target="#tipeAcaraCollapse"
                                 aria-expanded="false"
-                                aria-controls="tipeAcaraCollapse" --}}
+                                aria-controls="tipeAcaraCollapse"
                                 style="cursor: pointer;"></i>
                             </div>
                             <div class="collapse" id="tipeAcaraCollapse" wire:ignore.self>
-                                <div class="form-check">
-                                    <input type="checkbox"
-                                        class="form-check-input custom-checkbox"
-                                        wire:model="selectedTipeAcara"
-                                        wire:change="$refresh"
-                                        value="Pimpinan"
-                                        id="tipe_pimpinan">
-                                    <label class="form-check-label" for="tipe_pimpinan">Pimpinan</label>
-                                </div>
-                                <div class="form-check">
-                                    <input type="checkbox"
-                                        class="form-check-input custom-checkbox"
-                                        wire:model="selectedTipeAcara"
-                                        wire:change="$refresh"
-                                        value="Perangkat Daerah"
-                                        id="tipe_perangkat_daerah">
-                                    <label class="form-check-label" for="tipe_perangkat_daerah">Perangkat Daerah</label>
-                                </div>
                                 <div class="form-check">
                                     <input type="checkbox"
                                         class="form-check-input custom-checkbox"
@@ -61,10 +43,14 @@
                             <div class="form-label d-flex justify-content-between align-items-center">
                                 <label>Tipe Kategori</label>
                                 <i class="bi bi-chevron-down chevron-icon"
-                                id="kategoriChevron"
-                                role="button"
-                                onclick="toggleKategoriCollapse()"
-                                style="cursor: pointer;"></i>
+                                    id="kategoriChevron"
+                                    role="button"
+                                    onclick="toggleKategoriCollapse()"
+                                    data-bs-toggle="collapse"
+                                    data-bs-target="#kategoriCollapse"
+                                    aria-expanded="false"
+                                    aria-controls="kategoriCollapse"
+                                    style="cursor: pointer;"></i>
                             </div>
                             <div class="collapse" id="kategoriCollapse" wire:ignore.self>
                                 @if (!empty($kategoriOptions))
@@ -107,7 +93,7 @@
                     <div class="col-12 col-lg-10">
                         <div class="row">
                             {{-- Baris 1: Navigasi bulan --}}
-                            <div class="col-12 col-lg-8 d-flex align-items-center flex-wrap gap-2">
+                            <div class="col-12 col-lg-8 d-flex align-items-center flex-wrap gap-2 span-tanggal">
                                 <div class="d-flex gap-2">
                                     {{-- @if($viewMode === 'bulan') --}}
                                         <button wire:click="previousMonth" class="btn btn-outline-secondary btn-sm custom-pagination-btn">
@@ -194,6 +180,7 @@
                             {{-- Baris 3: Kalender dan Agenda --}}
                             {{-- TAMPILAN BULAN --}}
                             @if($viewMode === 'bulan')
+                                {{-- Table --}}
                                 <div class="col-12 col-lg-8">
                                     <div class="table-responsive">
                                         <table class="table table-bordered table-fixed text-center align-middle">
@@ -223,7 +210,7 @@
                                                                 $day = $currentDate->day;
                                                                 $hasEvents = isset($events[$currentDate->toDateString()]);
                                                             @endphp
-                                                            <td class="p-1 text-center {{ !$isCurrentMonth ? 'outside-month' : '' }}">
+                                                            <td class="calendar-cell p-1 text-center {{ !$isCurrentMonth ? 'outside-month' : '' }}">
                                                                 <div wire:click="selectDate('{{ $currentDate->toDateString() }}')"
                                                                     class="calendar-day
                                                                         {{ $selected ? 'active' : '' }}
@@ -252,7 +239,7 @@
                                 </div>
                                 {{-- Agenda di Bulan --}}
                                 {{-- BAWAH INI SCROLLABLE --}}
-                                <div class="card-agenda col-12 col-lg-4 d-flex flex-column" style="max-height: 500px; overflow: hidden;">
+                                <div class="card-agenda col-12 col-lg-4 d-flex flex-column" style="max-height: 550px; overflow: hidden;">
                                     @php
                                         $tanggal = \Carbon\Carbon::parse(time: $selectedDate)->translatedFormat('d F Y');
                                         $day = \Carbon\Carbon::parse($selectedDate)->day;
@@ -265,42 +252,48 @@
                                         </div>
                                     </div>
                                     
-                                        {{-- Bawah ini card yang scrollable --}}
-                                        <div class="overflow-auto" style="flex: 1 1 auto; min-height: 0;">
-                                            @if(isset($events[$selectedDate]) && count($events[$selectedDate]) > 0)
-                                        @php
-                                            $eventList = $events[$selectedDate] ?? [];
-                                        @endphp
-                                        @foreach ($eventList as $event)
-                                            {{-- Card Detail Agenda --}}
-                                            <div class="card mb-3 {{ \Carbon\Carbon::parse($event['tanggal'])->lt(\Carbon\Carbon::today()) ? 'agenda-past' : 'agenda-upcoming' }}"
-                                                    wire:click="tampilDetail({{ $event['id'] }})">
-                                                <div class="card-body">
-                                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                                        <span class="badge" style="background-color: aliceblue; color: #133c6b;">{{ $event['kategori'] }}</span>
-                                                        <button type="button" 
-                                                            class="btn btn-link p-0 text-decoration-none text-dark">
-                                                            <i class="bi bi-chevron-right"></i>
-                                                        </button>
-                                                    </div>
-                                                    <p class="mb-1"><strong>{{ $event['judul'] }}</strong></p>
-                                                    <p class="mb-1">
-                                                        {{ \Carbon\Carbon::parse($event['waktu_mulai'])->format('H:i') }} - 
-                                                        {{ \Carbon\Carbon::parse($event['waktu_selesai'])->format('H:i') }} WIB
-                                                    </p>
-                                                    <p class="mb-1">Agenda {{ $event['tipe_event'] }} | {{ $event['tipe_acara'] }}</p>
-                                                    <span class="badge bg-secondary">{{ $event['status'] }}</span>
+                                    {{-- Bawah ini card yang scrollable --}}
+                                    <div class="overflow-auto" style="flex: 1 1 auto; min-height: 0;">
+                                        @if(isset($events[$selectedDate]) && count($events[$selectedDate]) > 0)
+                                    @php
+                                        $eventList = $events[$selectedDate] ?? [];
+                                    @endphp
+                                    @foreach ($eventList as $event)
+                                        {{-- Card Detail Agenda --}}
+                                        <div class="card mb-3 {{ \Carbon\Carbon::parse($event['tanggal'])->lt(\Carbon\Carbon::today()) ? 'agenda-past' : 'agenda-upcoming' }}"
+                                                wire:click="tampilDetail({{ $event['id'] }})">
+                                            <div class="card-body">
+                                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                                    <span class="badge" style="background-color: aliceblue; color: #133c6b;">{{ $event['kategori'] }}</span>
+                                                    <button type="button" wire:click.stop class="btn btn-link p-0 text-decoration-none text-dark">
+                                                        <i class="bi bi-chevron-right"></i>
+                                                    </button>
                                                 </div>
-                                            </div>
-                                        @endforeach
-                                    @else
-                                        <div class="card bg-light text-center">
-                                            <div class="card-body py-3">
-                                                <p class="mb-0"><em>Tidak ada agenda pada hari ini.</em></p>
+                                                <p class="mb-1"><strong>{{ $event['judul'] }}</strong></p>
+                                                <p class="mb-1">
+                                                    {{ \Carbon\Carbon::parse($event['waktu_mulai'])->format('H:i') }} - 
+                                                    {{ \Carbon\Carbon::parse($event['waktu_selesai'])->format('H:i') }} WIB
+                                                </p>
+                                                <p class="mb-1">Agenda {{ $event['tipe_event'] }} | {{ $event['tipe_acara'] }}</p>
+                                                <span class="badge {{ match($event['status_dinamis']) {
+                                                    'Belum Dimulai' => 'bg-danger',
+                                                    'Berlangsung' => 'bg-success',
+                                                    'Selesai' => 'bg-primary',
+                                                    default => 'bg-dark',
+                                                } }}">
+                                                    {{ $event['status_dinamis'] }}
+                                                </span>
                                             </div>
                                         </div>
-                                    @endif
+                                    @endforeach
+                                @else
+                                    <div class="card bg-light text-center">
+                                        <div class="card-body py-3">
+                                            <p class="mb-0"><em>Tidak ada agenda pada hari ini.</em></p>
                                         </div>
+                                    </div>
+                                @endif
+                                    </div>
                                 </div>
                             {{-- TAMPILAN MINGGU --}}
                             @elseif($viewMode === 'minggu')
@@ -395,7 +388,14 @@
                                                         {{ \Carbon\Carbon::parse($event['waktu_selesai'])->format('H:i') }} WIB
                                                     </p>
                                                     <p class="mb-1 small text-muted">Agenda {{ $event['tipe_event'] }} | {{ $event['tipe_acara'] }}</p>
-                                                    <span class="badge bg-secondary">{{ $event['status'] }}</span>
+                                                    <span class="badge {{ match($detailData->status_dinamis) {
+                                                        'Belum Dimulai' => 'bg-danger',
+                                                        'Berlangsung' => 'bg-success',
+                                                        'Selesai' => 'bg-primary',
+                                                        default => 'bg-dark',
+                                                    } }}">
+                                                        {{ $detailData->status_dinamis }}
+                                                    </span>
                                                 </div>
                                             </div>
                                         </div>
@@ -413,51 +413,9 @@
                 </div>
             </div>
         </div>
-        
-        @include('components.agenda.modal-detail', [
+    </div>
+    @include('components.agenda.modal-detail', [
         'showDetail' => $showDetail,
         'detailData' => $detailData,
-        ])
-    </div>
-
-<script> 
-    document.addEventListener('DOMContentLoaded', () => {
-        syncChevronStates();
-    });
-
-    document.addEventListener('livewire:update', () => {
-        syncChevronStates();
-    });
-
-    function syncChevronStates() {
-        const tipeCollapse = document.getElementById('tipeAcaraCollapse');
-        const tipeChevron = document.getElementById('tipeAcaraChevron');
-        if (tipeCollapse?.classList.contains('show')) {
-            tipeChevron?.classList.add('rotate');
-        } else {
-            tipeChevron?.classList.remove('rotate');
-        }
-
-        const kategoriCollapse = document.getElementById('kategoriCollapse');
-        const kategoriChevron = document.getElementById('kategoriChevron');
-        if (kategoriCollapse?.classList.contains('show')) {
-            kategoriChevron?.classList.add('rotate');
-        } else {
-            kategoriChevron?.classList.remove('rotate');
-        }
-    }
-
-    function toggleTipeAcaraCollapse() {
-        const collapseEl = document.getElementById('tipeAcaraCollapse');
-        const chevronEl = document.getElementById('tipeAcaraChevron');
-        const instance = bootstrap.Collapse.getOrCreateInstance(collapseEl);
-        collapseEl.classList.contains('show') ? instance.hide() : instance.show();
-    }
-
-    function toggleKategoriCollapse() {
-        const collapseEl = document.getElementById('kategoriCollapse');
-        const chevronEl = document.getElementById('kategoriChevron');
-        const instance = bootstrap.Collapse.getOrCreateInstance(collapseEl);
-        collapseEl.classList.contains('show') ? instance.hide() : instance.show();
-    }
-</script>
+    ])
+</div>

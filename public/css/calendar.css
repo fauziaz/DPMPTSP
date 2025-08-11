@@ -153,7 +153,7 @@ td:nth-child(7) .calendar-day.active.today:hover {
         transition: box-shadow 0.2s ease;
     }
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
     .table-fixed thead th,
     .table-fixed tbody td {
         font-size: 0.75rem;
@@ -168,4 +168,34 @@ td:nth-child(7) .calendar-day.active.today:hover {
         height: 100%;
         padding: 2px;
     }
+} */
+
+@media (max-width: 768px) {
+    .col-lg-8, .col-lg-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .calendar-day {
+        width: 60px;
+        display: flex;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        padding: 4px;
+    }
+
+    .table-fixed thead th,
+    .table-fixed tbody td {
+        font-size: 0.75rem;
+    }
+
+    .table-responsive {
+        overflow-x: auto;
+    }
+}
+/* 
+@media (min-width: 577px) and (max-width: 678px) {
+} */
+
+@media (min-width: 769px) and (max-width: 1024px) {
 }

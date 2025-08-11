@@ -7,7 +7,35 @@
         <h4 class="animated-heading">Terwujudnya Pelayanan Perizinan yang Profesional untuk Mendorong Iklim Investasi di Kota Tasikmalaya</h4>
     </div>
 
-    <!-- Carousel Items -->
+    <div class="carousel-inner">
+    @foreach ($carouselImages as $index => $img)
+        <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+            <img src="{{ 
+                filled($img->image_path) 
+                    ? asset('storage/' . $img->image_path) 
+                    : ($img->image_url ?? '') 
+            }}" 
+            class="d-block w-100" 
+            style="border-radius: 0;" 
+            alt="Slide {{ $index + 1 }}">
+            
+            @if($img->caption_title || $img->caption_subtitle)
+            <div class="carousel-caption d-none d-md-block">
+                <h5>{{ $img->caption_title }}</h5>
+                <p>{{ $img->caption_subtitle }}</p>
+            </div>
+            @endif
+        </div>
+    @endforeach
+    </div>
+
+     <div class="carousel-indicators">
+        @foreach ($carouselImages as $index => $img)
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}" aria-label="Slide {{ $index + 1 }}"></button>
+        @endforeach
+    </div>
+
+    {{-- <!-- Carousel Items -->
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="https://dpmptsp.tasikmalayakota.go.id/public_html/desktop/assets/prof1.jpg"
@@ -21,14 +49,14 @@
             <img src="https://images.unsplash.com/photo-1743595271977-05a4f3a79b03?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
             class="d-block w-100" style="border-radius: 0;" alt="Slide 3">
         </div>
-    </div>
+    </div> --}}
 
         <!-- Indicators -->
-    <div class="carousel-indicators">
+    {{-- <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" aria-label="Slide 1" class="active"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-    </div>
+    </div> --}}
 
     <!-- Tombol Navigasi -->
     <button class="carousel-control-prev custom-arrow" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

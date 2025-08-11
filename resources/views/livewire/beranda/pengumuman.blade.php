@@ -5,28 +5,27 @@
             <h6>Informasi terbaru seputar layanan dan kebijakan</h6>
         </div>
         <div id="lightgallery-pengumuman" class="row g-3 justify-content-center">
-            @foreach($pengumumans as $pengumuman)
-            <div class="col-lg-4 pengumuman-col"
-                data-aos="fade-up"
-                data-aos-duration="600"
-                data-aos-delay="{{ $loop->index * 150 }}">
-                <a 
-                href="{{ $pengumuman['image'] }}" 
+        @foreach($pengumumans as $pengumuman)
+        <div class="col-lg-4 pengumuman-col" data-aos="fade-up" data-aos-duration="600" data-aos-delay="{{ $loop->index * 150 }}">
+            <a 
+                href="{{ filled($pengumuman->image_path) ? asset('storage/' . $pengumuman->image_path) : ($pengumuman->image_url ?? '#') }}" 
                 class="gallery-item"
                 data-lg-size="1600-1067"
-                data-sub-html="<h4>{{ $pengumuman['title'] }}</h4><p>{{ $pengumuman['description'] }}</p>">
-                    <div class="gallery-item-wrapper shadow-sm position-relative">
-                        <img 
-                        src="{{ $pengumuman['image'] }}"
-                        alt="{{ $pengumuman['title'] }}"
+                data-sub-html="<h4>{{ $pengumuman->caption_title }}</h4><p>{{ $pengumuman->caption_subtitle }}</p>">
+                <div class="gallery-item-wrapper shadow-sm position-relative">
+                    <img 
+                        src="{{ filled($pengumuman->image_path) ? asset('storage/' . $pengumuman->image_path) : ($pengumuman->image_url ?? asset('images/default-image.png')) }}"
+                        alt="{{ $pengumuman->caption_title }}"
                         class="img-fluid w-100 pengumuman-img" />
-                        <span class="magnify-btn">
-                            <i class="bi bi-search"></i>
-                        </span>
-                    </div>
-                </a>
-            </div>
-            @endforeach
+                    <span class="magnify-btn">
+                        <i class="bi bi-search"></i>
+                    </span>
+                </div>
+            </a>
+        </div>
+        @endforeach
+
+
         </div>
     </div>
 

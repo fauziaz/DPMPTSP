@@ -7,7 +7,7 @@
         subtitle="Temukan Data Statistik Sektoral DPMPTSP Kota Tasikmalaya"
     />
 
-    <div class="section-wrapper" style="padding-bottom: 100px;">
+    <div class="section-wrapper">
         <div class="container">
             <div class="content-card">
                 <div class="row">

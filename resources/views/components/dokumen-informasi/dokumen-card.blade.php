@@ -3,7 +3,7 @@
 <div class="card shadow-sm p-3 dokumen-card">
     <div class="dokumen-flex-wrapper">
         <div class="dokumen-icon-wrapper">
-            <i class="{{ $iconClass ?? 'bi bi-file-earmark' }}" style="font-size: 3rem;"></i>
+            <i class="{{ $iconClass->getIconClass() ?? 'bi bi-file-earmark' }}" style="font-size: 3rem;"></i>
         </div>
         <!-- Kanan: Konten -->
         <div class="dokumen-content">
@@ -11,8 +11,7 @@
                 <!-- Label kecil -->
                 <h6 class="dokumen-label">{{ $label }}</h6>
                 <!-- Judul dan deskripsi -->
-                <h5 class="dokumen-title mb-2">{{ $judul }}</h5>
-                <p class="dokumen-desc mb-3 d-none d-sm-block">{{ $deskripsi }}</p>
+                <h5 class="dokumen-title mb-4">{{ $judul }}</h5>
 
                 <!-- Info unduhan & tanggal -->
                 <div class="d-flex flex-column flex-sm-row align-items-center mb-2 dokumen-meta">
@@ -35,10 +34,10 @@
 
                 <div class="mt-3">
                     <button type="button" wire:click="lihatDetail({{ $id }})" class="btn btn-detail me-2">
-                        <i class="bi bi-eye me-2"></i> Detail
+                        <i class="bi bi-info-circle me-2"></i> Detail
                     </button>
                     <button type="button" wire:click="unduh({{ $id }})" class="btn btn-unduh">
-                        <i class="bi bi-download me-2"></i> Unduh
+                        <i class="bi bi-eye me-2"></i> Lihat
                     </button>
                 </div>
             </div>

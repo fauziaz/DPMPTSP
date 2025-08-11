@@ -22,8 +22,8 @@
                     </button>
 
                     @if($showPerPageDropdown)
-                    <div class="dropdown-menu-dokumen show p-2 shadow-sm" style="position: absolute; z-index: 999; width: 100%;">
-                        @foreach([10, 25, 50] as $jumlah)
+                    <div class="dropdown-menu show p-2 shadow-sm" style="position: absolute; z-index: 999; width: 100%;">
+                        @foreach([5, 10, 25, 50] as $jumlah)
                             <div 
                                 wire:click="setPerPage({{ $jumlah }})"
                                 class="dropdown-item small d-flex justify-content-between align-items-center py-1 px-2 {{ $perPage == $jumlah ? 'bg-secondary text-white' : '' }}"
@@ -65,7 +65,7 @@
                         </button>
 
                         @if($showPageDropdown)
-                        <div class="dropdown-menu-dokumen show p-2 shadow-sm" style="position: absolute; z-index: 999; width: 100%;">
+                        <div class="dropdown-menu show p-2 shadow-sm" style="position: absolute; z-index: 999; width: 100%;">
                             <input 
                                 type="text"
                                 wire:model.lazy="searchPage"
@@ -125,14 +125,14 @@
                             <i class="bi bi-chevron-down"></i>
                         </button>
                         @if($showPageDropdown)
-                        <div class="dropdown-menu-dokumen show p-2 shadow-sm" style="position: absolute; z-index: 999; width: 100%;">
+                        <div class="dropdown-menu show p-2 shadow-sm" style="position: absolute; z-index: 999; width: 100%;">
                             <input 
                                 type="text"
                                 wire:model.lazy="searchPage"
                                 class="form-control form-control-sm mb-2 text-center"
                                 placeholder="Cari halaman..."
                             >
-                            @for($i = 1; $i <= $paginator->lastPage(); $i++)
+                            {{-- @for($i = 1; $i <= $paginator->lastPage(); $i++)
                                 @if($searchPage == '' || str_contains((string)$i, $searchPage))
                                     <div 
                                         wire:click="pilihHalaman({{ $i }})"
@@ -145,7 +145,7 @@
                                         @endif
                                     </div>
                                 @endif
-                            @endfor
+                            @endfor --}}
 
                             @if($searchPage !== '' && !collect(range(1, $paginator->lastPage()))->contains(fn($p) => str_contains((string)$p, $searchPage)))
                                 <div class="text-muted text-center small py-1 px-2">

@@ -9,7 +9,22 @@ class InvestasiModel extends Model
     protected $table = 'investasis';
 
     protected $fillable = [
-        'judul', 'deskripsi', 'tahun', 'tanggal',
-        'file_path', 'format', 'tag', 'kategori',
+        'judul','deskripsi','tahun','tanggal','downloads','file_path', 'file_url', 'format', 'tag'
     ];
+
+    public function getIconClass(): string
+    {
+        $ext = strtolower($this->format ?? '');
+
+        switch ($ext) {
+            case 'pdf':
+                return 'bi bi-filetype-pdf text-danger';
+            case 'docx':
+                return 'bi bi-filetype-docx text-primary';
+            case 'xlsx':
+                return 'bi bi-filetype-xls text-success';
+            default:
+                return 'bi bi-file-earmark text-secondary';
+        }
+    }
 }
