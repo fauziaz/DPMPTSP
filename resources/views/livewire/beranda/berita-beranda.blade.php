@@ -140,13 +140,14 @@
             @endforeach
           </div>
         </div>
-      </div>
         <!-- Tombol Lihat Semua -->
         <div class="text-end">
           <a href="{{ route('berita.index') }}" class="btn lihat-semua-btn">
             Lihat Semua Posting <i class="bi bi-box-arrow-up-right ms-1"></i>
           </a>
         </div>
+      </div>
+
     </div>
   </div>
 </div>
