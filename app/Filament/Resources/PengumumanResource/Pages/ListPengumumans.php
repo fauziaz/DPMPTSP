@@ -6,7 +6,7 @@ use App\Filament\Resources\PengumumanResource;
 use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 
-class ListPengumumen extends ListRecords
+class ListPengumumans extends ListRecords
 {
     protected static string $resource = PengumumanResource::class;
 

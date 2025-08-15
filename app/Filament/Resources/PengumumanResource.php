@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Support\HtmlString;
 use Filament\Forms\Components\Placeholder;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -29,9 +30,12 @@ class PengumumanResource extends Resource
         return $form
             ->schema([
                 Forms\Components\FileUpload::make('image_path')
-                    ->label('Upload Gambar')
-                    ->directory('carousel-image')
                     ->image()
+                    ->maxFiles(1) // batasi sesuai kebutuhan
+                    ->preserveFilenames()
+                    ->directory('carousel')
+                    ->disk('public') // set disk di sini
+                    ->label('Upload Gambar')
                     ->reactive(),
 
                 Forms\Components\TextInput::make('image_url')
@@ -44,13 +48,28 @@ class PengumumanResource extends Resource
                     ->label('Preview Gambar')
                     ->visible(fn ($get) => filled($get('image_path')) || filled($get('image_url')))
                     ->content(function ($get) {
-                        if (filled($get('image_path'))) {
-                            return new HtmlString('<img src="' . asset('storage/' . $get('image_path')) . '" style="max-width:200px" />');
+                        $paths = $get('image_path');
+
+                        if (!is_array($paths)) {
+                            $paths = [$paths];
                         }
-                        if (filled($get('gambarUrl'))) {
-                            return new HtmlString('<img src="' . $get('image_url') . '" style="max-width:200px" />');
+
+                        $html = '';
+                        foreach ($paths as $path) {
+                            if (filled($path)) {
+                                if (str_contains($path, 'livewire-file') || str_contains($path, '.tmp')) {
+                                    $url = $path;
+                                } else {
+                                    $url = Storage::url($path);
+                                }
+                                $html .= '<img src="' . $url . '" style="max-width:200px; margin:5px;" />';
+                            }
                         }
-                        return '';
+                        if (filled($get('image_url'))) {
+                            $html .= '<img src="' . $get('image_url') . '" style="max-width:200px; margin:5px;" />';
+                        }
+
+                        return new HtmlString($html);
                     })
                     ->extraAttributes(['class' => 'prose max-w-full']),
             
@@ -126,7 +145,7 @@ class PengumumanResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPengumumen::route('/'),
+            'index' => Pages\ListPengumumans::route('/'),
             'create' => Pages\CreatePengumuman::route('/create'),
             'edit' => Pages\EditPengumuman::route('/{record}/edit'),
         ];

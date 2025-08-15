@@ -187,17 +187,17 @@ class AgendaResource extends Resource
                 ->sortable(),
 
                 Tables\Columns\TextColumn::make('status_dinamis')
-    ->label('Status')
-    ->getStateUsing(fn ($record) => $record->status_dinamis ?? '-')
-    ->sortable(false),
+                    ->label('Status')
+                    ->getStateUsing(fn ($record) => $record->status_dinamis ?? '-')
+                    ->sortable(false),
 
             Tables\Columns\TextColumn::make('tipe_event')
-    ->label('Tipe Event'),
-    // ->formatStateUsing(fn($state) => is_scalar($state) && $state !== null ? (AgendaModel::tipeEventOptions()[$state] ?? '-') : '-'),
+                ->label('Tipe Event'),
+                // ->formatStateUsing(fn($state) => is_scalar($state) && $state !== null ? (AgendaModel::tipeEventOptions()[$state] ?? '-') : '-'),
 
-Tables\Columns\TextColumn::make('sifat_acara')
-    ->label('Sifat Acara'),
-    // ->formatStateUsing(fn($state) => is_scalar($state) && $state !== null ? (AgendaModel::sifatAcaraOptions()[$state] ?? '-') : '-'),
+            Tables\Columns\TextColumn::make('sifat_acara')
+                ->label('Sifat Acara'),
+                // ->formatStateUsing(fn($state) => is_scalar($state) && $state !== null ? (AgendaModel::sifatAcaraOptions()[$state] ?? '-') : '-'),
 
 
             // Tables\Columns\TextColumn::make('tipe_event')
