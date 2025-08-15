@@ -18,6 +18,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\HtmlString;
 use Filament\Forms\Components\Placeholder;
 
@@ -37,11 +38,14 @@ class AgendaResource extends Resource
             ->schema([
 
                 Forms\Components\FileUpload::make('path_gambar')
-                    ->label('Upload Gambar')
-                    ->directory('agenda')
                     ->image()
+                    ->maxFiles(1) // batasi sesuai kebutuhan
+                    ->preserveFilenames()
+                    ->directory('agenda')
+                    ->disk('public') // set disk di sini
+                    ->label('Upload Gambar')
                     ->reactive(),
-
+                    
                 Forms\Components\TextInput::make('url_gambar')
                     ->label('URL Gambar')
                     ->url()
@@ -52,13 +56,28 @@ class AgendaResource extends Resource
                     ->label('Preview Gambar')
                     ->visible(fn ($get) => filled($get('path_gambar')) || filled($get('url_gambar')))
                     ->content(function ($get) {
-                        if (filled($get('path_gambar'))) {
-                            return new HtmlString('<img src="' . asset('storage/' . $get('path_gambar')) . '" style="max-width:200px" />');
+                        $paths = $get('path_gambar');
+
+                        if (!is_array($paths)) {
+                            $paths = [$paths];
+                        }
+
+                        $html = '';
+                        foreach ($paths as $path) {
+                            if (filled($path)) {
+                                if (str_contains($path, 'livewire-file') || str_contains($path, '.tmp')) {
+                                    $url = $path;
+                                } else {
+                                    $url = Storage::url($path);
+                                }
+                                $html .= '<img src="' . $url . '" style="max-width:200px; margin:5px;" />';
+                            }
                         }
                         if (filled($get('url_gambar'))) {
-                            return new HtmlString('<img src="' . $get('url_gambar') . '" style="max-width:200px" />');
+                            $html .= '<img src="' . $get('gambar_url') . '" style="max-width:200px; margin:5px;" />';
                         }
-                        return '';
+
+                        return new HtmlString($html);
                     })
                     ->extraAttributes(['class' => 'prose max-w-full']),
                 

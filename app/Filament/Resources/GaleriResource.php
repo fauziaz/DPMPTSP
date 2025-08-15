@@ -42,7 +42,7 @@ class GaleriResource extends Resource
                     ->image()
                     ->maxFiles(1) // batasi sesuai kebutuhan
                     ->preserveFilenames()
-                    ->directory('carousel')
+                    ->directory('galeri')
                     ->disk('public') // set disk di sini
                     ->label('Upload Gambar')
                     ->reactive(),
