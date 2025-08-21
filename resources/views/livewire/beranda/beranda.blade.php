@@ -137,8 +137,8 @@
         });
     });
     </script> --}}
-
-    <livewire:beranda.content />
+    
+    <livewire:beranda.sambutan />
     <livewire:beranda.layanan />
     <livewire:beranda.pendaftaran />
     <livewire:beranda.berita-beranda />

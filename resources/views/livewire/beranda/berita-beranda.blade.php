@@ -86,7 +86,7 @@
                           class="thumbnail-berita" />
                     </div>
                     <div class="my-auto d-flex flex-column justify-content-between w-100">
-                      <p class="mb-2">{{ \Illuminate\Support\Str::limit($berita->judul, 60) }}</p>
+                      <p class="text-start mb-2">{{ \Illuminate\Support\Str::limit($berita->judul, 60) }}</p>
                       <small class="text-muted d-flex justify-content-between mt-auto">
                         <span>
                           {{ $berita->kategori }}
@@ -119,7 +119,7 @@
                           class="thumbnail-berita" />
                     </div>
                     <div class="my-auto d-flex flex-column justify-content-between w-100">
-                      <p class="mb-1">{{ \Illuminate\Support\Str::limit($artikel->judul, 60) }}</p>
+                      <p class="text-start mb-1">{{ \Illuminate\Support\Str::limit($artikel->judul, 60) }}</p>
                       <small class="text-muted d-flex justify-content-between mt-auto">
                         <span>
                           {{ $artikel->kategori }}

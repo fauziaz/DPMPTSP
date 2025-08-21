@@ -24,8 +24,8 @@ use App\Livewire\PenanamanModal\Regulasi;
 
 use App\Livewire\Pengaduan\Pengaduan;
 
+use App\Livewire\Beranda\Sambutan;
 use App\Livewire\Beranda\Layanan;
-use App\Livewire\Beranda\Content;
 use App\Livewire\Beranda\Pendaftaran;
 // use App\Livewire\Beranda\Berita;
 use App\Livewire\Beranda\BeritaBeranda;
@@ -62,10 +62,9 @@ Route::get('/pengaduan', Pengaduan::class)->name('pengaduan.pengaduan');
 
 
 // Define the routes for the application
+Route::get('/sambutan', Sambutan::class)->name('Sambutan');
 Route::get('/layanan', Layanan::class)->name('layanan');
-Route::get('/content', Content::class)->name('content');
-Route::get('/pendaftaran', Content::class)->name('pendaftaran');
-// Route::get('/berita', Berita::class)->name('berita');
+Route::get('/pendaftaran', Pendaftaran::class)->name('pendaftaran');
 Route::get('/berita-beranda', BeritaBeranda::class)->name('berita-beranda');
 
 Route::get('/profil-kadis', ProfilKadis::class)->name('profil-kadis');

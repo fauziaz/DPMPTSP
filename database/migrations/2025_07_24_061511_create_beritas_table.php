@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('kategori');
             $table->string('judul');
+            $table->string('gambar')->nullable();
+            $table->string('gambar_berita_url')->nullable();
             $table->text('deskripsi');
-            $table->string('gambar');
             $table->string('penulis');
             $table->timestamps();
             $table->unsignedInteger('views')->default(0);
