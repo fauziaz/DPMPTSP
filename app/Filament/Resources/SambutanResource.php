@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 class SambutanResource extends Resource
 {
     protected static ?string $model = Sambutan::class;
-    protected static ?string $navigationIcon = 'heroicon-o-chat-bubble-left-ellipsis';
+    protected static ?string $navigationIcon = 'heroicon-o-microphone';
     protected static ?string $navigationLabel = 'Sambutan Kepala Dinas';
     protected static ?string $pluralLabel = 'Sambutan Kepala Dinas';
     protected static ?string $navigationGroup = 'Beranda';

@@ -3,90 +3,76 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProfilKadisResource\Pages;
+use App\Filament\Resources\ProfilKadisResource\RelationManagers;
 use App\Models\ProfilKadis;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\HtmlString;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProfilKadisResource extends Resource
 {
     protected static ?string $model = ProfilKadis::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
-    protected static ?string $navigationLabel = 'Profil Kepala Dinas';
-    protected static ?string $pluralLabel   = 'Profil Kepala Dinas';
-    protected static ?string $navigationGroup = 'Profil';
+    protected static ?string $navigationIcon   = 'heroicon-o-user';
+    protected static ?string $navigationLabel  = 'Profil Kepala Dinas';
+    protected static ?string $pluralLabel      = 'Profil Kepala Dinas';
+    protected static ?string $navigationGroup  = 'Profil';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('Data Pimpinan')
-                    ->schema([
-                        Forms\Components\TextInput::make('nama')
-                            ->label('Nama Lengkap')
-                            ->required(),
+                Forms\Components\TextInput::make('nama')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\TextInput::make('jabatan')
+                    ->required()
+                    ->maxLength(255),
+                Forms\Components\FileUpload::make('foto')
+                    ->image()
+                    ->directory('profil')
+                    ->nullable(),
+                Forms\Components\TextInput::make('foto_url')
+                    ->label('Link Foto')
+                    ->nullable()
+                    ->url()
+                    ->maxLength(255),
+                Forms\Components\RichEditor::make('biodata')
+                    ->label('Biodata')
+                    ->nullable()
+                    ->columnSpanFull(),
 
-                        Forms\Components\TextInput::make('jabatan')
-                            ->label('Jabatan')
-                            ->default('Kepala Dinas DPMPTSP Kota Tasikmalaya'),
+                Forms\Components\Section::make('Riwayat Pendidikan')->schema([
+                    Forms\Components\HasManyRepeater::make('pendidikans')
+                        ->relationship('pendidikans', fn($query) => $query->orderByDesc('id'))
+                        ->schema([
+                            Forms\Components\TextInput::make('jurusan')
+                                ->label('Jenjang/Jurusan')
+                                ->required(),
+                            Forms\Components\TextInput::make('institusi')
+                                ->label('Institusi')
+                                ->required(),
+                        ])
+                        ->createItemButtonLabel('Tambah Pendidikan'),
+                ]),
 
-                        // Upload Foto
-                        Forms\Components\FileUpload::make('foto')
-                            ->label('Upload Foto')
-                            ->image()
-                            ->maxFiles(1)
-                            ->preserveFilenames()
-                            ->directory('profil-pimpinan')
-                            ->disk('public'),
-
-                        // Link Foto
-                        Forms\Components\TextInput::make('foto_url')
-                            ->label('Link Foto (opsional)')
-                            ->url(),
-
-                        // Preview Foto
-                        Forms\Components\Placeholder::make('foto_preview')
-                            ->label('Preview Foto')
-                            ->content(function ($get) {
-                                $path = is_array($get('foto'))
-                                    ? ($get('foto')[0] ?? null)
-                                    : $get('foto');
-
-                                $url = $path ? Storage::url($path) : null;
-
-                                if (filled($get('foto_url'))) {
-                                    $url = $get('foto_url');
-                                }
-
-                                return $url
-                                    ? new HtmlString('<img src="' . $url . '" style="max-width:200px; margin:5px;" />')
-                                    : new HtmlString('<span style="color:#888;">Belum ada foto</span>');
-                            }),
-
-                        Forms\Components\RichEditor::make('biodata')
-                            ->label('Biodata Ringkas')
-                            ->columnSpanFull(),
-
-                        Forms\Components\Repeater::make('pendidikan')
-                            ->schema([
-                                Forms\Components\TextInput::make('judul')->label('Jenjang / Gelar'),
-                                Forms\Components\TextInput::make('desc')->label('Keterangan'),
-                            ])
-                            ->collapsible()
-                            ->label('Riwayat Pendidikan'),
-
-                        Forms\Components\Repeater::make('pekerjaan')
-                            ->schema([
-                                Forms\Components\TextInput::make('judul')->label('Jabatan / Posisi'),
-                            ])
-                            ->collapsible()
-                            ->label('Riwayat Pekerjaan'),
-                    ]),
+                Forms\Components\Section::make('Riwayat Pekerjaan')->schema([
+                    Forms\Components\HasManyRepeater::make('pekerjaans')
+                        ->relationship('pekerjaans', fn($query) => $query->orderByDesc('id'))
+                        ->schema([
+                            Forms\Components\TextInput::make('jabatan')
+                                ->label('Jabatan')
+                                ->required(),
+                            Forms\Components\TextInput::make('instansi')
+                                ->label('Instansi')
+                                ->required(),
+                        ])
+                        ->createItemButtonLabel('Tambah Pekerjaan'),
+                ]),
             ]);
     }
 
@@ -94,21 +80,52 @@ class ProfilKadisResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('nama')->searchable(),
-                Tables\Columns\TextColumn::make('jabatan')->searchable(),
-
-                // Tampilkan Foto
+                Tables\Columns\TextColumn::make('nama')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('jabatan')
+                    ->searchable(),
                 Tables\Columns\ImageColumn::make('foto')
-                    ->label('Foto Upload')
-                    ->getStateUsing(fn ($record) =>
-                        is_array($record->foto)
-                            ? ($record->foto[0] ?? null)
-                            : $record->foto
-                    ),
+                    ->label('Foto')
+                    ->getStateUsing(function ($record) {
+                        if ($record->foto) {
+                            return asset('storage/' . $record->foto);
+                        } elseif ($record->foto_url) {
+                            return $record->foto_url;
+                        }
+                        return null; // kosong kalau dua-duanya ga ada
+                    })
+                    ->square()
+                    ->height(80)
+                    ->width(80),                    
+                Tables\Columns\TextColumn::make('biodata')
+                    ->limit(50)
+                    ->html()                    
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('pendidikans')
+                    ->label('Riwayat Pendidikan')
+                    ->formatStateUsing(function ($record) {
+                        return $record->pendidikans
+                            ->sortByDesc('id')
+                            ->take(2)
+                            ->map(function ($item) {
+                                return ($item->jurusan ?? '-') . ': ' . ($item->institusi ?? '-');
+                            })
+                            ->implode("\n");
+                    })
+                    ->wrap(),
 
-                Tables\Columns\ImageColumn::make('foto_url')
-                    ->label('Foto Link'),
-
+                Tables\Columns\TextColumn::make('pekerjaans')
+                    ->label('Riwayat Pekerjaan')
+                    ->formatStateUsing(function ($record) {
+                        return $record->pekerjaans
+                            ->sortByDesc('id')
+                            ->take(2)
+                            ->map(function ($item) {
+                                return ($item->jabatan ?? '-') . ': ' . ($item->instansi ?? '-');
+                            })
+                            ->implode("\n");
+                    })
+                    ->wrap(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -117,6 +134,9 @@ class ProfilKadisResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+            ])
+            ->filters([
+                //
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),
@@ -132,7 +152,9 @@ class ProfilKadisResource extends Resource
 
     public static function getRelations(): array
     {
-        return [];
+        return [
+            //
+        ];
     }
 
     public static function getPages(): array

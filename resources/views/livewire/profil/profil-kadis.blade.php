@@ -2,100 +2,94 @@
 
     <!-- Hero Section -->
     <div class="hero-section text-white text-center d-flex" style="background-image: url('{{ asset('image/gedung.jpg') }}');">
-    <div class="container">
-        <nav aria-label="breadcrumb">
-        <ol class="breadcrumb bg-transparent justify-content-center">
-            <li class="breadcrumb-item"><a href="/" class="text-white">Beranda</a></li>
-            <li class="breadcrumb-item active text-white" aria-current="page">Profil Pimpinan</li>
-        </ol>
-        </nav>
-        <h2 class="display-5 fw-bold">Profil Pimpinan</h2>
-        <p class="lead">Kepala Dinas PMPTSP Kota Tasikmalaya Periode 2025-Sekarang</p>
-    </div>
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb bg-transparent justify-content-center">
+                    <li class="breadcrumb-item"><a href="/" class="text-white">Beranda</a></li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">Profil Pimpinan</li>
+                </ol>
+            </nav>
+            <h2 class="display-5 fw-bold">Profil Pimpinan</h2>
+            <p class="lead">{{ $profil->jabatan ?? 'Belum tersedia' }}</p>
+        </div>
     </div>
 
     <!-- Konten Profil Pimpinan -->
     <div class="section-wrapper">
-    <div class="container">
-        <div class="content-card">
-            <!-- Galeri Foto Sebelum Profil -->
-            <div class="row mb-4 justify-content-center text-center">
-                <div class="col-md-4 mb-3">
-                    <img src="{{ asset('image/hanafi.jpg') }}" alt="Foto Kegiatan 1" class="galkadis-img">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <img src="{{ asset('image/hanafi.jpg') }}" alt="Foto Kegiatan 2" class="galkadis-img">
-                </div>
-                <div class="col-md-4 mb-3">
-                    <img src="{{ asset('image/hanafi.jpg') }}" alt="Foto Kegiatan 3" class="galkadis-img">
-                </div>
-            </div>
+        <div class="container">
+            <div class="content-card">
 
-            <!-- Foto & Biodata -->
-            <div class="row gy-4 align-items-center mb-4">
-                <div class="text-center">
-                    <h2 class="align-item-center">Kepala Dinas DPMPTSP Kota Tasikmalaya</h2>
+                <!-- Galeri Foto Sebelum Profil -->
+                <div class="row mb-4 justify-content-center text-center">
+                    @forelse($profil->galeris ?? [] as $galeri)
+                        <div class="col-md-4 mb-3">
+                            <img src="{{ asset('storage/'.$galeri->foto) }}" alt="Foto Kegiatan" class="galkadis-img">
+                        </div>
+                    @empty
+                        <p><em>Galeri foto belum tersedia</em></p>
+                    @endforelse
                 </div>
-            <!-- Gambar -->
-            <div class="col-md-4 text-center">
-                <img src="{{ asset('image/kadis.png') }}" alt="Kepala Dinas" class="kepala-img mb-3">
-                <h5 class="mt-2 fw-bold">Hanafi, S.H., M.H.</h5>
-            </div>
 
-            <!-- Biodata -->
-            <div class="col-md-8 kepala-bio">
-                <p><strong>Tempat, Tanggal Lahir:</strong> Bima, 05 Juli 1968</p>
-                <p><strong>Alamat:</strong> Jalan Kemuning 1, Kawalu, Kota Tasikmalaya</p>
-                <p><strong>Jenis Kelamin:</strong> Laki-laki</p>
-                <p><strong>Agama:</strong> Islam</p>
-                <p><strong>Status:</strong> Menikah</p>
-                <p><strong>Istri:</strong> Ratu Ana Lindana</p>
-            </div>
-            </div>
+                <!-- Foto & Biodata -->
+                <div class="row gy-4 align-items-center mb-4">
+                    <div class="text-center">
+                        <h2 class="align-item-center">{{ $profil->jabatan ?? 'Belum tersedia' }}</h2>
+                    </div>
 
-            <!-- Pendidikan & Pekerjaan -->
-            <div class="row">
-            <!-- Pendidikan -->
-            <div class="col-md-6">
-                <h6 class="fw-bold text-start text-profil-judul">Riwayat Pendidikan:</h6>
-                <div class="timeline-wrapper">
-                <div class="timeline-block">
-                    <div class="timeline-title">Magister Ilmu Hukum</div>
-                    <p class="timeline-desc">Sekolah Tinggi Ilmu Hukum (IBLAM)</p>
-                </div>
-                <div class="timeline-block">
-                    <div class="timeline-title">Sarjana Hukum Tata Negara</div>
-                    <p class="timeline-desc">Universitas Mataram</p>
-                </div>
-                <div class="timeline-block">
-                    <div class="timeline-title">SMA Negeri 2 Bima</div>
-                    <p class="timeline-desc">Tahun 1986</p>
-                </div>
-                <div class="timeline-block">
-                    <div class="timeline-title">SMP Negeri Sape</div>
-                </div>
-                <div class="timeline-block">
-                    <div class="timeline-title">SD Negeri 1 Sape</div>
-                </div>
-                </div>
-            </div>
+                    <div class="d-flex justify-content-center align-items-center gap-5 flex-wrap">
+                        <!-- Foto -->
+                        <div class="text-center">
+                            @if($profil && $profil->foto)
+                                <img src="{{ asset('storage/'.$profil->foto) }}" alt="Foto Kadis" class="kepala-img mb-3">
+                            @elseif($profil && $profil->foto_url)
+                                <img src="{{ $profil->foto_url }}" alt="Foto Kadis" class="kepala-img mb-3">
+                            @else
+                                <p><em>Foto belum tersedia</em></p>
+                            @endif
 
-            <!-- Pekerjaan -->
-            <div class="col-md-6">
-                <h6 class="fw-bold text-start text-profil-judul">Riwayat Pekerjaan:</h6>
-                <div class="timeline-wrapper">
-                <div class="timeline-block"><div class="timeline-title">Kepala Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu</div></div>
-                <div class="timeline-block"><div class="timeline-title">Kepala Badan Pengelola Keuangan dan Aset Daerah</div></div>
-                <div class="timeline-block"><div class="timeline-title">Kepala Bagian Perundang-Undangan</div></div>
-                <div class="timeline-block"><div class="timeline-title">Kepala Bagian Hukum, Sekretariat Daerah</div></div>
-                <div class="timeline-block"><div class="timeline-title">Kepala Bagian Pengelolaan Aset, Sekretariat Daerah</div></div>
-                <div class="timeline-block"><div class="timeline-title">Kepala Sub Bagian Anggaran</div></div>
-                <div class="timeline-block"><div class="timeline-title">Kepala Sub Bagian Peraturan Perundang-Undangan</div></div>
-                <div class="timeline-block"><div class="timeline-title">Kepala Sub Bagian Administrasi & Dokumentasi Hukum</div></div>
+                            <h5 class="mt-2 fw-bold">{{ $profil->nama ?? 'Belum tersedia' }}</h5>
+                        </div>
+
+                        <!-- Biodata -->
+                        <div class="kepala-bio" style="max-width: 500px;">
+                            {!! $profil->biodata ?? '<p><em>Biodata belum tersedia</em></p>' !!}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pendidikan & Pekerjaan -->
+                <div class="row gy-4 justify-content-center mb-4">
+                    <!-- Pendidikan -->
+                    <div class="col-md-5">
+                        <h6 class="fw-bold text-start text-profil-judul">Riwayat Pendidikan:</h6>
+                        <div class="timeline-wrapper">
+                            @forelse($profil->pendidikans ?? [] as $pendidikan)
+                                <div class="timeline-block">
+                                    <div class="timeline-title">{{ $pendidikan->jurusan ?? 'Belum tersedia' }}</div>
+                                    <p class="timeline-desc">{{ $pendidikan->institusi ?? '' }}</p>
+                                </div>
+                            @empty
+                                <p><em>Data pendidikan belum tersedia</em></p>
+                            @endforelse
+                        </div>
+                    </div>
+
+                    <!-- Pekerjaan -->
+                    <div class="col-md-5">
+                        <h6 class="fw-bold text-start text-profil-judul">Riwayat Pekerjaan:</h6>
+                        <div class="timeline-wrapper">
+                            @forelse($profil->pekerjaans ?? [] as $pekerjaan)
+                                <div class="timeline-block">
+                                    <div class="timeline-title">{{ $pekerjaan->jabatan ?? 'Belum tersedia' }}</div>
+                                    <p class="timeline-desc">{{ $pekerjaan->instansi ?? '' }}</p>
+                                </div>
+                            @empty
+                                <p><em>Data pekerjaan belum tersedia</em></p>
+                            @endforelse
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
-        </div>
         </div>
     </div>
 </div>
